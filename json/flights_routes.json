@@ -1,0 +1,64 @@
+{
+    "cities": [
+        {
+            "countryID": 1,
+            "countryName": "Australia",
+            "cities": [
+                {
+                    "id": 1,
+                    "cityName": "Sydney"
+                },
+                {
+                    "id": 2,
+                    "cityName": "Adelaide"
+                },
+                {
+                    "id": 3,
+                    "cityName": "Brisbane"
+                },
+                {
+                    "id": 4,
+                    "cityName": "Melbourne"
+                }
+            ]
+        }
+
+    ],
+    "flightRoutes": [
+        {
+            "id": 1,
+            "originCityId": 1,
+            "originCityName": "Sydney",
+            "destinationCityId": 2,
+            "dectinationCityName": "Adelaide"
+        },
+        {
+            "id": 2,
+            "originCityId": 1,
+            "originCityName": "Sydney",
+            "destinationCityId": 3,
+            "dectinationCityName": "Brisbane"
+        },
+        {
+            "id": 3,
+            "originCityId": 1,
+            "originCityName": "Sydney",
+            "destinationCityId": 4,
+            "dectinationCityName": "Melbourne"
+        },
+        {
+            "id": 4,
+            "originCityId": 2,
+            "originCityName": "Adelaide",
+            "destinationCityId": 1,
+            "dectinationCityName": "Sydney"
+        },
+        {
+            "id": 5,
+            "originCityId": 2,
+            "originCityName": "Adelaide",
+            "destinationCityId": 3,
+            "dectinationCityName": "Brisbane"
+        }
+    ]
+}
