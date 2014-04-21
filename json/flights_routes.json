@@ -1,26 +1,28 @@
 {
     "cities": [
         {
+            "id": 1,
+            "cityName": "Sydney",
             "countryID": 1,
-            "countryName": "Australia",
-            "cities": [
-                {
-                    "id": 1,
-                    "cityName": "Sydney"
-                },
-                {
-                    "id": 2,
-                    "cityName": "Adelaide"
-                },
-                {
-                    "id": 3,
-                    "cityName": "Brisbane"
-                },
-                {
-                    "id": 4,
-                    "cityName": "Melbourne"
-                }
-            ]
+            "countryName": "Australia"
+        },
+        {
+            "id": 2,
+            "cityName": "Adelaide",
+            "countryID": 1,
+            "countryName": "Australia"
+        },
+        {
+            "id": 3,
+            "cityName": "Brisbane",
+            "countryID": 1,
+            "countryName": "Australia"
+        },
+        {
+            "id": 4,
+            "cityName": "Melbourne",
+            "countryID": 1,
+            "countryName": "Australia"
         }
 
     ],
