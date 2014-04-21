@@ -1,39 +1,33 @@
+
 define([
-    'controls/select2Dropdown'
-    //TODO put searchTabs.html here...
-], function (select2Dropdown) {
-    /**
-     * @class searchTabs_view
-     * @param originList
-     * @param destinationList
-     */
-    var searchTabs_view = function() {
-        var view = {
-            html: '<div class="left-side-panel">' +
-                '<ul class="nav nav-tabs">' +
-                    '<li class="one-way-tab active"><a href="#">One Way</a></li>' +
-                    '<li class="return-tab"><a href="#">Return</a></li>' +
-                '</ul>' +
-                '<div class="search-controls">' +
-                    '<div class="flight-origin"><div class="field-name">From</div></div>' +
-                    '<div class="flight-to"><div class="field-name">Destination</div></div>' +
-                '</div>' +
-                '</div>',
+    'controls/select2Dropdown',
+    'text!./searchTabs.html'
+], function (select2Dropdown, template) {
 
-            element: null,
+/**
+ * searchTabs_view
+ *
+ */
+var searchTabs_view = function() {
+    var view = {
+        html: template,
 
-            init: function() {
-                this.element = $(this.html);
+        element: null,
 
-                $(this.element).find('.one-way-tab').click(function() {
-                    alert("one way tab is clicked");
-                });
+        init: function() {
+            this.element = $(this.html);
 
-                $(this.element).find('.return-tab').click(function() {
-                    alert("return tab is clicked");
-                });
+            $(this.element).find('.one-way-tab').click(function() {
 
-                this.flightOriginDropdown = new select2Dropdown({
+            });
+
+            $(this.element).find('.return-tab').click(function() {
+
+            });
+
+            $( "#tabs" ).tabs();
+
+            this.flightOriginDropdown = new select2Dropdown({
                 id: "origin-dropdown",
                     className: "origin-selection",
                     itemValue: "id",
@@ -49,15 +43,15 @@ define([
                     parentElement: this.element.find('.flight-to')
                 });
 
-            },
+        },
 
-            buildOriginDropdowns: function(originList, selectOrigin) {
-                this.flightOriginDropdown.buildOptions(originList, selectOrigin);
-            },
+        buildOriginDropdowns: function(originList, selectOrigin) {
+            this.flightOriginDropdown.buildOptions(originList, selectOrigin);
+        },
 
-            buildDestinationDropdown: function(destinationList, selectDestination) {
-                this.flightDestinationDropdown.buildOptions(destinationList, selectDestination);
-            }
+        buildDestinationDropdown: function(destinationList, selectDestination) {
+            this.flightDestinationDropdown.buildOptions(destinationList, selectDestination);
+        }
 
 
         };
