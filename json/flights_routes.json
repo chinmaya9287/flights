@@ -23,44 +23,79 @@
             "cityName": "Melbourne",
             "countryID": 1,
             "countryName": "Australia"
+        },
+        {
+            "id": 5,
+            "cityName": "Canberra",
+            "countryID": 1,
+            "countryName": "Australia"
+        },
+        {
+            "id": 6,
+            "cityName": "Perth",
+            "countryID": 1,
+            "countryName": "Australia"
+        },
+        {
+            "id": 7,
+            "cityName": "Darwin",
+            "countryID": 1,
+            "countryName": "Australia"
+        },
+        {
+            "id": 8,
+            "cityName": "Auckland",
+            "countryID": 2,
+            "countryName": "New Zealand"
+        },
+        {
+            "id": 9,
+            "cityName": "Wellington",
+            "countryID": 2,
+            "countryName": "New Zealand"
+        },
+        {
+            "id": 10,
+            "cityName": "Christchurch",
+            "countryID": 2,
+            "countryName": "New Zealand"
         }
-
     ],
     "flightRoutes": [
         {
             "id": 1,
-            "originCityId": 1,
+            "originCityID": 1,
             "originCityName": "Sydney",
-            "destinationCityId": 2,
-            "dectinationCityName": "Adelaide"
+            "destinationCityID": 2,
+            "destinationCityName": "Adelaide"
         },
         {
             "id": 2,
-            "originCityId": 1,
+            "originCityID": 1,
             "originCityName": "Sydney",
-            "destinationCityId": 3,
-            "dectinationCityName": "Brisbane"
+            "destinationCityID": 3,
+            "destinationCityName": "Brisbane"
         },
         {
             "id": 3,
-            "originCityId": 1,
+            "originCityID": 1,
             "originCityName": "Sydney",
-            "destinationCityId": 4,
-            "dectinationCityName": "Melbourne"
+            "destinationCityID": 4,
+            "destinationCityName": "Melbourne"
         },
         {
             "id": 4,
-            "originCityId": 2,
+            "originCityID": 2,
             "originCityName": "Adelaide",
-            "destinationCityId": 1,
-            "dectinationCityName": "Sydney"
+            "destinationCityID": 1,
+            "destinationCityName": "Sydney"
         },
         {
             "id": 5,
-            "originCityId": 2,
+            "originCityID": 2,
             "originCityName": "Adelaide",
-            "destinationCityId": 3,
-            "dectinationCityName": "Brisbane"
+            "destinationCityID": 3,
+            "destinationCityName": "Brisbane"
         }
     ]
 }
