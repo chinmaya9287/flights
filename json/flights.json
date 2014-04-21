@@ -1,11 +1,22 @@
 [
     {
-        "departureDateTime": "2014-04-21T06:00:00.000Z",
-        "arrivalDateTime": "2014-04-21T06:00:00.000Z",
+        "id": 1,
         "flightRouteID": 1,
-        "destinationCityID": ,
-        "destinationCityName": "",
-        "originCityID": ,
-        "originCityName": ""
+        "originCityID": 1,
+        "originCityName": "Adelaide",
+        "destinationCityID": 2,
+        "destinationCityName": "Brisbane",
+        "departureDateTime": "2014-04-21T20:00:00.000Z",
+        "arrivalDateTime": "2014-04-21T20:00:00.000Z"
+    },
+    {
+        "id": 2,
+        "flightRouteID": 1,
+        "originCityID": 2,
+        "originCityName": "Brisbane",
+        "destinationCityID": 1,
+        "destinationCityName": "Adelaide",
+        "departureDateTime": "2014-04-21T08:00:00.000Z",
+        "arrivalDateTime": "2014-04-21T08:00:00.000Z"
     }
 ]
