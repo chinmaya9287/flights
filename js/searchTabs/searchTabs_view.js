@@ -45,9 +45,10 @@ return function() {
 
             $(this.element).find( "#tabs" ).tabs();
             $(this.element).find("#passengers-number").spinner({
-                min: 0,
+                min: 1,
                 max: 100,
-                step: 0
+                step: 1,
+                start: 1
             })
 
         },
