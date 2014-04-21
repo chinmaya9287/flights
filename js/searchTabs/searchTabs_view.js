@@ -7,7 +7,7 @@ define([
      * @param originList
      * @param destinationList
      */
-    var searchTabs_view = function(originList, destinationList) {
+    var searchTabs_view = function() {
         var view = {
             html: '<div class="left-side-panel">' +
                 '<ul class="nav nav-tabs">' +
@@ -33,22 +33,30 @@ define([
                     alert("return tab is clicked");
                 });
 
-            },
-
-            buildDropdowns: function(originList, destinationList) {
-
                 this.flightOriginDropdown = new select2Dropdown({
-                    list: originList,
+                id: "origin-dropdown",
                     className: "origin-selection",
-                    groupName: "countryName",
-                    optionListName: "cities",
                     itemValue: "id",
                     itemDisplayName: "cityName",
                     parentElement: this.element.find('.flight-origin')
                 });
 
+                this.flightDestinationDropdown = new select2Dropdown({
+                    id: "destination-dropdown",
+                    className: "destination-selection",
+                    itemValue: "id",
+                    itemDisplayName: "cityName",
+                    parentElement: this.element.find('.flight-to')
+                });
 
+            },
 
+            buildOriginDropdowns: function(originList, selectOrigin) {
+                this.flightOriginDropdown.buildOptions(originList, selectOrigin);
+            },
+
+            buildDestinationDropdown: function(destinationList, selectDestination) {
+                this.flightDestinationDropdown.buildOptions(destinationList, selectDestination);
             }
 
 
