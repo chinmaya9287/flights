@@ -4,26 +4,30 @@
             <li class="one-way-tab active"><a href="#search-container">One Way</a></li>
             <li class="return-tab"><a href="#search-container">Return</a></li>
        </ul>
-       <div class="search-controls" id="search-container">
-           <div class="flight-origin">
-               <div class="field-name">From</div>
+       <div class="search-page" id="search-container">
+           <div class="search-controls">
+               <div class="flight-origin">
+                   <div class="field-name">From</div>
+               </div>
+               <div class="flight-to">
+                   <div class="field-name">Destination</div>
+               </div>
+               <div class="departure-date">
+                   <div class="field-name">Departure </div>
+                   <input type="text" id="datepicker-departure">
+               </div>
+               <div class="arrive-date">
+                   <div class="field-name">Arrive</div>
+                   <input type="text" id="datepicker-arrive">
+               </div>
+               <div class="passages-number">
+                   <div class="field-name">Passengers</div>
+                   <input id="passengers-number" type="number" value="1">
+               </div>
+               <button class="btn search">Search</button>
            </div>
-           <div class="flight-to">
-               <div class="field-name">Destination</div>
-           </div>
-           <div class="departure-date">
-               <div class="field-name">Departure </div>
-               <input type="text" id="datepicker-departure">
-           </div>
-           <div class="arrive-date">
-               <div class="field-name">Arrive</div>
-               <input type="text" id="datepicker-arrive">
-           </div>
-           <div class="passages-number">
-               <div class="field-name">Passengers</div>
-               <input id="passengers-number" type="number" value="1">
-           </div>
-           <button class="btn search">Search</button>
+           <div class="search-results"></div>
        </div>
+
    </div>
 </div>

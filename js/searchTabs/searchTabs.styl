@@ -1,3 +1,51 @@
-#top-banner {
-    background-color: #fff;
+body {
+    font-size: 12px;
+    font-family: Verdana, Arial, sans-serif;
+}
+
+#tabs {
+    min-width: 600px;
+    font-size: 12px;
+}
+
+#search-container {
+    position: relative;
+
+    .search-controls {
+        width: 220px;
+
+        > div {
+            padding-bottom: 20px;
+        }
+
+        .select2-container {
+            width: 200px
+        }
+
+        input {
+            width: 195px;
+        }
+
+        .ui-spinner {
+            width: 200px;
+        }
+    }
+
+    .search-results {
+        position: absolute;
+        left: 250px;
+        top: 1em;
+        bottom: 1em;
+        right: 1.4em;
+        padding: 1em 1.4em;
+        min-width: 250px;
+        background-color: #F6F6F6;
+    }
+}
+
+.select2-drop {
+}
+
+.ui-datepicker {
+    font-size: 11px;
 }

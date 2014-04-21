@@ -27,18 +27,19 @@ define([
 
                 this.flightOriginDropdown = new select2Dropdown({
                     id: "origin-dropdown",
-                        className: "origin-selection",
-                        itemValue: "id",
-                        itemDisplayName: "cityName",
-                        parentElement: this.element.find('.flight-origin')
-                    });
+                    className: "origin-selection",
+                    itemValue: "id",
+                    itemDisplayName: "cityName",
+                    parentElement: this.element.find('.flight-origin')
+                });
+
                 this.flightDestinationDropdown = new select2Dropdown({
-                        id: "destination-dropdown",
-                        className: "destination-selection",
-                        itemValue: "id",
-                        itemDisplayName: "cityName",
-                        parentElement: this.element.find('.flight-to')
-                    });
+                    id: "destination-dropdown",
+                    className: "destination-selection",
+                    itemValue: "id",
+                    itemDisplayName: "cityName",
+                    parentElement: this.element.find('.flight-to')
+                });
 
                 $(this.element).find('#datepicker-departure').datepicker();
                 $(this.element).find('#datepicker-arrive').datepicker();
