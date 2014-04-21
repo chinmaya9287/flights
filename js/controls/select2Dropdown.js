@@ -50,7 +50,9 @@ define([], function () {
 
                 $(this.element).html(this.buildOptionGroup(this.list));
 
-                $('#' + this.id).select2();
+                $('#' + this.id).select2({
+                    placeholder: "placeholder"
+                });
 
                 //bind the selection change event
                 $(this.element).change(
