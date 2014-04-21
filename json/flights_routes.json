@@ -521,21 +521,21 @@
             "destinationCityName": "Auckland"
         },
         {
-            "id": 63,
+            "id": 64,
             "originCityID": 11,
             "originCityName": "Wellington",
             "destinationCityID": 10,
             "destinationCityName": "Christchurch"
         },
         {
-            "id": 64,
+            "id": 65,
             "originCityID": 11,
             "originCityName": "Wellington",
             "destinationCityID": 6,
             "destinationCityName": "Melbourne"
         },
         {
-            "id": 65,
+            "id": 66,
             "originCityID": 11,
             "originCityName": "Wellington",
             "destinationCityID": 8,
