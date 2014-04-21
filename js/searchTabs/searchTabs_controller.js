@@ -6,7 +6,7 @@ define([], function () {
      * @param {Object} options.service
      * @param {Object} options.view
      */
-    var searchTabs_controller = function(options) {
+    return function(options) {
         var controller = {
 
             originList: null,
@@ -59,6 +59,4 @@ define([], function () {
 
         return controller;
     };
-
-    return searchTabs_controller;
 });

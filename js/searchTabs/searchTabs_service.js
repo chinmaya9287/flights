@@ -2,7 +2,7 @@ define([], function () {
     /**
      * @class searchTabs_service
      */
-    var searchTabs_service = function() {
+    return function() {
         var service = {
 
             originList: null,
@@ -85,6 +85,4 @@ define([], function () {
         service.init();
         return service;
     };
-
-    return searchTabs_service;
 });
