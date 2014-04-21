@@ -5,6 +5,9 @@
     "main": "js/main.js",
     "dependencies": {
         "grunt": "*",
-        "grunt-jslint": "*"
+        "grunt-contrib-stylus": "*",
+        "grunt-jslint": "*",
+        "grunt-karma": "*",
+        "karma-mocha": "*"
     }
 }
