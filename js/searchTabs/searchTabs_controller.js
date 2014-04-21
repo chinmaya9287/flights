@@ -5,6 +5,7 @@ define([], function () {
      * @param {Object} options
      * @param {Object} options.service
      * @param {Object} options.view
+     * @param {Object} options.callbacks
      */
     return function(options) {
         var controller = {
@@ -21,13 +22,31 @@ define([], function () {
 
                 this.service = options.service;
                 this.view = options.view;
+                this.setCallbacks(options.callbacks);
 
+                function searchSubmit(data) {
+                    self.searchSubmit(data);
+                }
                 this.service.getFlightRoutes(function() {
                     self.buildDropdowns();
                     self.service.preselectOrigin();
                     self.getAvailableDestinations(self.service.selectedOriginID);
+
+                    //bind UI Events
+                    self.view.bindUIEvents({
+                        selectedOriginID: self.service.selectedOriginID,
+                        selectedDestinationID: self.service.selectedDestinationID,
+                        searchCallback: searchSubmit
+                    });
+
                 });
 
+            },
+
+            setCallbacks: function(callbacks) {
+                if(callbacks) {
+                    this.searchSubmitCallback = callbacks.searchSubmitCallback;
+                }
             },
 
             buildDropdowns: function() {
@@ -39,6 +58,14 @@ define([], function () {
                 }
 
                 this.view.buildOriginDropdowns(this.service.originList, selectOrigin);
+            },
+
+            searchSubmit: function(data) {
+                if(this.searchSubmitCallback) {
+                    data.selectedOriginID = this.service.selectedOriginID;
+                    data.selectedDestinationID = this.service.selectedDestinationID;
+                    this.searchSubmitCallback(data);
+                }
             },
 
             /**
