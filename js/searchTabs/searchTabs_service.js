@@ -59,14 +59,14 @@ define([], function () {
                 //find the flight routes that contains selected origin
                 var i, destinations,
                     filteredFlightRoutes = _.filter(this.flightRoutes, function(item) {
-                     return item.originCityId === parseInt(selectedOrigin);
+                     return item.originCityID === parseInt(selectedOrigin);
                     });
 
                 //get the get destination city list
                 destinations = _.filter(this.cityList, function(item) {
 
                     for(i=0; i< filteredFlightRoutes.length; i++) {
-                        if(filteredFlightRoutes[i].destinationCityId === item.id) {
+                        if(filteredFlightRoutes[i].destinationCityID === item.id) {
                             return true;
                         }
                     }

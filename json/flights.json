@@ -1,0 +1,11 @@
+[
+    {
+        "departureDateTime": "2014-04-21T06:00:00.000Z",
+        "arrivalDateTime": "2014-04-21T06:00:00.000Z",
+        "flightRouteID": 1,
+        "destinationCityID": ,
+        "destinationCityName": "",
+        "originCityID": ,
+        "originCityName": ""
+    }
+]

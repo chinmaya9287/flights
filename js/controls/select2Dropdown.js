@@ -83,10 +83,7 @@ define([], function () {
 
                 for (name in groupList) {
                     optionList = groupList[name];
-
-                    html = '<optgroup label="'+ name +'">';
-
-                    html = html + this.buildItemList(optionList) + "</optgroup>";
+                    html += '<optgroup label="'+ name +'">' + this.buildItemList(optionList) + "</optgroup>";
                 }
 
                 return html;
@@ -97,8 +94,7 @@ define([], function () {
 
                 for(i=0; i < optionList.length; i++) {
                     item = optionList[i];
-
-                    html = html + '<option value="'+ item[this.itemValue] +'">'+ item[this.itemDisplayName] +'</option>';
+                    html += '<option value="'+ item[this.itemValue] +'">'+ item[this.itemDisplayName] +'</option>';
                 }
 
                 return html;
