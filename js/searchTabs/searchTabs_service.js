@@ -10,6 +10,12 @@ var searchTabs_service = function() {
 
         flightRoutes: null,
 
+        cityList: null,
+
+        selectedOriginID: null,
+
+        selectedDestinationID: null,
+
         init: function() {
             console.log("initialising the service");
 
@@ -17,6 +23,7 @@ var searchTabs_service = function() {
             this.originList = [];
             this.destinationList = [];
             this.flightRoutes = [];
+            this.cityList = [];
         },
 
         getFlightRoutes: function(successCallback) {
@@ -27,7 +34,9 @@ var searchTabs_service = function() {
                 dataType: 'json'
             })
                 .done(function(data) {
-                    self.originList = data.cities;
+                    self.cityList = data.cities;
+
+                    self.originList = self.groupByCountries(data.cities);
                     self.flightRoutes = data.flightRoutes;
 
                     if(successCallback) {
@@ -37,6 +46,38 @@ var searchTabs_service = function() {
                 }).fail(function() {
 
                 });
+        },
+
+        preselectOrigin: function() {
+            //preselect the first city in the list
+            this.selectedOriginID = this.cityList[0].id;
+
+        },
+
+        getAvailableDestinations: function(selectedOrigin) {
+            //find the flight routes that contains selected origin
+            var i, destinations,
+                filteredFlightRoutes = _.filter(this.flightRoutes, function(item) {
+                 return item.originCityId === parseInt(selectedOrigin);
+                });
+
+            //get the get destination city list
+            destinations = _.filter(this.cityList, function(item) {
+
+                for(i=0; i< filteredFlightRoutes.length; i++) {
+                    if(filteredFlightRoutes[i].destinationCityId === item.id) {
+                        return true;
+                    }
+                }
+
+                return false;
+            });
+
+            this.destinationList = this.groupByCountries(destinations);
+        },
+
+        groupByCountries: function(cities) {
+            return _.groupBy(cities, 'countryName');
         }
     };
 

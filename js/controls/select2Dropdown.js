@@ -1,11 +1,5 @@
 /**
  *
- * @param list
- * @param className
- * @param groupName
- * @param optionListName
- * @param itemName
- * @param parementElement
  * @returns {null}
  */
 var select2Dropdown = function(options) {
@@ -22,19 +16,15 @@ var select2Dropdown = function(options) {
 
         itemDisplayName: null,
 
-        selectedValue: null,
-
         selectCallback: null,
 
         init: function() {
-            var html;
-
             this.assignOptions(options);
 
             this.element = document.createElement('select');
 
             $(this.element).addClass('select2-dropdown');
-            this.element.id = 'select2-dropdown';
+            this.element.id = this.id;
 
             //select2 must be attached to the dom before using it
             this.parentElement.append(this.element);
@@ -43,53 +33,53 @@ var select2Dropdown = function(options) {
                 $(this.element).addClass(options.className);
             }
 
-            //build the option group if the group name is provided
-            if(this.groupName) {
-               html = this.buildOptionGroup(this.list);
-            } else {
-               html = this.buildItemList(this.list);
-            }
 
-            $(this.element).html(html);
+        },
 
-            $('#' + this.element.id).select2({
-                allowClear: true
-            });
+        buildOptions: function(dataList, selectCallback) {
+            var self = this;
 
-            this.selectedValue = $('#' + this.element.id).select2("val");
+            this.list = dataList;
 
+            $(this.element).html(this.buildOptionGroup(this.list));
 
+            $('#' + this.id).select2();
+
+            //bind the selection change event
+            $(this.element).change(
+                function() {
+                    var selectedValue;
+
+                    if(selectCallback) {
+                        selectedValue = $('#' + self.id).select2("val");
+                        selectCallback(selectedValue);
+                    }
+                }
+            );
         },
 
         assignOptions: function(options) {
 
-            if(options.list && options.list.length >0 && options.parentElement) {
-                this.list = options.list;
-                this.groupName = options.groupName || "groupName";
-                this.optionListName = options.optionListName || "list";
+            if(options.id && options.parentElement) {
                 this.itemValue = options.itemValue || "id";
                 this.itemDisplayName = options.itemDisplayName || "name";
                 this.parentElement = options.parentElement;
+                this.id = options.id;
 
             } else {
-                throw new Error("list and parent element must be provided for the select2Dropdown");
+                throw new Error("Id and parent element must be provided for the select2Dropdown");
             }
         },
 
         buildOptionGroup: function(groupList) {
-            var i, optionGroup, optionList, html = "";
+            var optionList, html = "";
 
-            if(this.groupName) {
-                for (i = 0; i < groupList.length; i++) {
-                    optionGroup = groupList[i][this.groupName];
-                    optionList = groupList[i][this.optionListName];
+            for (name in groupList) {
+                optionList = groupList[name];
 
-                    if (optionGroup) {
-                        html = '<optgroup label="'+ optionGroup +'">';
-                    }
+                html = '<optgroup label="'+ name +'">';
 
-                    html = html + this.buildItemList(optionList) + "</optgroup>";
-                }
+                html = html + this.buildItemList(optionList) + "</optgroup>";
             }
 
             return html;
@@ -110,5 +100,5 @@ var select2Dropdown = function(options) {
 
     control.init();
 
-    return control.element;
+    return control;
 };
