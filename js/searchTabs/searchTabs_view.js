@@ -66,9 +66,10 @@ define([
                 this.arriveDateControl = $(this.element).find('#datepicker-arrive');
                 this.passengersControl = $(this.element).find("#passengers-number");
 
-
                 this.departureDateControl.datepicker();
+                this.departureDateControl.datepicker("option", "dateFormat", "dd MM yy");
                 this.arriveDateControl.datepicker();
+                this.arriveDateControl.datepicker("option", "dateFormat", "dd MM yy");
 
                 this.passengersControl.spinner({
                     min: 1,
@@ -79,11 +80,8 @@ define([
 
             },
 
-            bindUIEvents: function(options) {
+            bindUIEvents: function(searchSelected) {
                 var data = {}, self = this,
-                    selectedOriginID = options.selectedOriginID,
-                    selectedDestinationID = options.selectedDestinationID,
-                    searchSelected = options.searchCallback,
                     departureDate, arriveDate, passengers;
 
                 //bind UI events
@@ -93,41 +91,22 @@ define([
                     arriveDate = self.arriveDateControl.val();
                     passengers = self.passengersControl.val();
 
-                    //check which tab it is on at the moment
-                    if(self.isOneWay) {
-                        if(selectedOriginID !== undefined && selectedOriginID !== null && departureDate !== "" && passengers !== "") {
-                            data = {
-                                departureDate: departureDate,
-                                passengers: passengers,
-                                isOneway: true
-                            };
+                    data = {
+                        departureDate: departureDate,
+                        arriveDate: arriveDate,
+                        passengers: passengers,
+                        isOneWay: self.isOneWay
+                    };
 
-                            if(searchSelected) {
-                                searchSelected(data);
-                            }
-
-                        } else {
-                            alert("Please provide origin, destination, departure date and passengers number for the search.");
-                        }
-                    } else {
-                        if(selectedOriginID !== undefined && selectedDestinationID !== null && departureDate !== "" && arriveDate !== "" && passengers !== "") {
-                            data = {
-                                departureDate: departureDate,
-                                arriveDate: arriveDate,
-                                passengers: passengers,
-                                isOneWay: false
-                            };
-
-                            if(searchSelected) {
-                                searchSelected(data);
-                            }
-
-                        } else {
-                            alert("Please provide origin, destination, departure date, arrive date and passengers number for the search.");
-                        }
+                    if(searchSelected) {
+                        searchSelected(data);
                     }
 
                 });
+            },
+
+            promtAlert: function(message) {
+                alert(message);
             },
 
             disableArriveDatePicker: function(isDisable) {

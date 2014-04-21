@@ -33,11 +33,7 @@ define([], function () {
                     self.getAvailableDestinations(self.service.selectedOriginID);
 
                     //bind UI Events
-                    self.view.bindUIEvents({
-                        selectedOriginID: self.service.selectedOriginID,
-                        selectedDestinationID: self.service.selectedDestinationID,
-                        searchCallback: searchSubmit
-                    });
+                    self.view.bindUIEvents(searchSubmit);
 
                 });
 
@@ -61,9 +57,25 @@ define([], function () {
             },
 
             searchSubmit: function(data) {
+                var selectedOriginID = this.service.selectedOriginID,
+                    selectedDestinationID = this.service.selectedDestinationID;
+
+                //check which tab it is on at the moment
+                if(data.isOneWay) {
+                    if(selectedOriginID === null || selectedDestinationID === null || data.departureDate === "" || data.passengers === "") {
+                        this.view.promtAlert("Please provide origin, destination, departure date and passengers number for the search.");
+                        return;
+                    }
+                } else {
+                    if(selectedOriginID === null || selectedDestinationID === null || data.departureDate === "" || data.arriveDate === "" || data.passengers === "") {
+                        this.view.promtAlert("Please provide origin, destination, departure date, arrive date and passengers number for the search.");
+                        return;
+                    }
+                }
+
                 if(this.searchSubmitCallback) {
-                    data.selectedOriginID = this.service.selectedOriginID;
-                    data.selectedDestinationID = this.service.selectedDestinationID;
+                    data.selectedOriginID = selectedOriginID;
+                    data.selectedDestinationID = selectedDestinationID;
                     this.searchSubmitCallback(data);
                 }
             },
