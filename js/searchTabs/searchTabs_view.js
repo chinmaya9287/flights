@@ -14,8 +14,6 @@ define([
 
             element: null,
 
-            isOneWay: null,
-
             departureDateControl: null,
 
             arriveDateControl: null,
@@ -26,23 +24,11 @@ define([
                 var self = this;
 
                 this.element = $(this.html);
-                $(this.element).find( "#tabs" ).tabs();
+
 
                 //default the one way tab is selected
                 this.disableArriveDatePicker(true);
-                this.isOneWay = true;
 
-                $(this.element).find('.one-way-tab').click(function() {
-                    //disable the arrive date picker
-                    self.disableArriveDatePicker(true);
-                    self.isOneWay = true;
-                });
-
-                $(this.element).find('.return-tab').click(function() {
-                    //disable the arrive date picker
-                    self.disableArriveDatePicker(false);
-                    self.isOneWay = false;
-                });
 
                 //create origin dropdown and destination dropdown using select2 dropdown
                 this.flightOriginDropdown = new select2Dropdown({
@@ -94,8 +80,7 @@ define([
                     data = {
                         departureDate: departureDate,
                         arriveDate: arriveDate,
-                        passengers: passengers,
-                        isOneWay: self.isOneWay
+                        passengers: passengers
                     };
 
                     if(searchSelected) {
