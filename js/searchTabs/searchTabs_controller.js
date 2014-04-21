@@ -5,6 +5,7 @@ define([], function () {
      * @param {Object} options
      * @param {Object} options.service
      * @param {Object} options.view
+     * @param {Object} options.callbacks
      */
     return function(options) {
         var controller = {
@@ -21,13 +22,27 @@ define([], function () {
 
                 this.service = options.service;
                 this.view = options.view;
+                this.setCallbacks(options.callbacks);
 
+                function searchSubmit(data) {
+                    self.searchSubmit(data);
+                }
                 this.service.getFlightRoutes(function() {
                     self.buildDropdowns();
                     self.service.preselectOrigin();
                     self.getAvailableDestinations(self.service.selectedOriginID);
+
+                    //bind UI Events
+                    self.view.bindUIEvents(searchSubmit);
+
                 });
 
+            },
+
+            setCallbacks: function(callbacks) {
+                if(callbacks) {
+                    this.searchSubmitCallback = callbacks.searchSubmitCallback;
+                }
             },
 
             buildDropdowns: function() {
@@ -39,6 +54,30 @@ define([], function () {
                 }
 
                 this.view.buildOriginDropdowns(this.service.originList, selectOrigin);
+            },
+
+            searchSubmit: function(data) {
+                var selectedOriginID = this.service.selectedOriginID,
+                    selectedDestinationID = this.service.selectedDestinationID;
+
+                //check which tab it is on at the moment
+                if(data.isOneWay) {
+                    if(selectedOriginID === null || selectedDestinationID === null || data.departureDate === "" || data.passengers === "") {
+                        this.view.promtAlert("Please provide origin, destination, departure date and passengers number for the search.");
+                        return;
+                    }
+                } else {
+                    if(selectedOriginID === null || selectedDestinationID === null || data.departureDate === "" || data.arriveDate === "" || data.passengers === "") {
+                        this.view.promtAlert("Please provide origin, destination, departure date, arrive date and passengers number for the search.");
+                        return;
+                    }
+                }
+
+                if(this.searchSubmitCallback) {
+                    data.selectedOriginID = selectedOriginID;
+                    data.selectedDestinationID = selectedDestinationID;
+                    this.searchSubmitCallback(data);
+                }
             },
 
             /**

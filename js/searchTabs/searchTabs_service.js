@@ -71,10 +71,11 @@ define([], function () {
                         }
                     }
 
-                    return false;
+                    return false;0
                 });
 
                 this.destinationList = this.groupByCountries(destinations);
+                this.selectedDestinationID = destinations[0].id;
             },
 
             groupByCountries: function(cities) {
