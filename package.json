@@ -1,0 +1,14 @@
+{
+    "name": "flight_bookings",
+    "description": "This projects provides a flight search engine",
+    "version": "1.0.0",
+    "main": "js/main.js",
+    "dependencies": {
+        "grunt": "*",
+        "grunt-contrib-requirejs": "*",
+        "grunt-contrib-stylus": "*",
+        "grunt-jslint": "*",
+        "grunt-karma": "*",
+        "karma-mocha": "*"
+    }
+}

@@ -1,86 +1,90 @@
-/**
- *
- */
-var searchTabs_service = function() {
-    var service = {
+define([], function () {
+    /**
+     * @class searchTabs_service
+     */
+    var searchTabs_service = function() {
+        var service = {
 
-        originList: null,
+            originList: null,
 
-        destinationList: null,
+            destinationList: null,
 
-        flightRoutes: null,
+            flightRoutes: null,
 
-        cityList: null,
+            cityList: null,
 
-        selectedOriginID: null,
+            selectedOriginID: null,
 
-        selectedDestinationID: null,
+            selectedDestinationID: null,
 
-        init: function() {
-            console.log("initialising the service");
+            init: function() {
+                console.log("initialising the service");
 
-            //initialise the variables
-            this.originList = [];
-            this.destinationList = [];
-            this.flightRoutes = [];
-            this.cityList = [];
-        },
+                //initialise the variables
+                this.originList = [];
+                this.destinationList = [];
+                this.flightRoutes = [];
+                this.cityList = [];
+            },
 
-        getFlightRoutes: function(successCallback) {
-            var self = this;
+            getFlightRoutes: function(successCallback) {
+                var self = this;
 
-            $.ajax({
-                url: 'json/flights_routes.json',
-                dataType: 'json'
-            })
-                .done(function(data) {
-                    self.cityList = data.cities;
+                $.ajax({
+                    url: 'json/flights_routes.json',
+                    dataType: 'json'
+                })
+                    .done(function(data) {
+                        self.cityList = data.cities;
 
-                    self.originList = self.groupByCountries(data.cities);
-                    self.flightRoutes = data.flightRoutes;
+                        self.originList = self.groupByCountries(data.cities);
+                        self.flightRoutes = data.flightRoutes;
 
-                    if(successCallback) {
-                        successCallback(data);
+                        if(successCallback) {
+                            successCallback(data);
+                        }
+
+                    }).fail(function() {
+
+                    });
+            },
+
+            preselectOrigin: function() {
+                //preselect the first city in the list
+                this.selectedOriginID = this.cityList[0].id;
+
+            },
+
+            getAvailableDestinations: function(selectedOrigin) {
+                //find the flight routes that contains selected origin
+                var i, destinations,
+                    filteredFlightRoutes = _.filter(this.flightRoutes, function(item) {
+                     return item.originCityId === parseInt(selectedOrigin);
+                    });
+
+                //get the get destination city list
+                destinations = _.filter(this.cityList, function(item) {
+
+                    for(i=0; i< filteredFlightRoutes.length; i++) {
+                        if(filteredFlightRoutes[i].destinationCityId === item.id) {
+                            return true;
+                        }
                     }
 
-                }).fail(function() {
-
-                });
-        },
-
-        preselectOrigin: function() {
-            //preselect the first city in the list
-            this.selectedOriginID = this.cityList[0].id;
-
-        },
-
-        getAvailableDestinations: function(selectedOrigin) {
-            //find the flight routes that contains selected origin
-            var i, destinations,
-                filteredFlightRoutes = _.filter(this.flightRoutes, function(item) {
-                 return item.originCityId === parseInt(selectedOrigin);
+                    return false;
                 });
 
-            //get the get destination city list
-            destinations = _.filter(this.cityList, function(item) {
+                this.destinationList = this.groupByCountries(destinations);
+            },
 
-                for(i=0; i< filteredFlightRoutes.length; i++) {
-                    if(filteredFlightRoutes[i].destinationCityId === item.id) {
-                        return true;
-                    }
-                }
+            groupByCountries: function(cities) {
+                return _.groupBy(cities, 'countryName');
+            }
+        };
 
-                return false;
-            });
-
-            this.destinationList = this.groupByCountries(destinations);
-        },
-
-        groupByCountries: function(cities) {
-            return _.groupBy(cities, 'countryName');
-        }
+        service.init();
+        return service;
     };
 
-    service.init();
-    return service;
-};
+    return searchTabs_service;
+});
