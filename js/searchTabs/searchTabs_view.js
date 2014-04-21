@@ -46,20 +46,20 @@ define([
 
                 //create origin dropdown and destination dropdown using select2 dropdown
                 this.flightOriginDropdown = new select2Dropdown({
-                        id: "origin-dropdown",
-                        className: "origin-selection",
-                        itemValue: "id",
-                        itemDisplayName: "cityName",
-                        parentElement: this.element.find('.flight-origin')
-                    });
+                    id: "origin-dropdown",
+                    className: "origin-selection",
+                    itemValue: "id",
+                    itemDisplayName: "cityName",
+                    parentElement: this.element.find('.flight-origin')
+                });
 
                 this.flightDestinationDropdown = new select2Dropdown({
-                        id: "destination-dropdown",
-                        className: "destination-selection",
-                        itemValue: "id",
-                        itemDisplayName: "cityName",
-                        parentElement: this.element.find('.flight-to')
-                    });
+                    id: "destination-dropdown",
+                    className: "destination-selection",
+                    itemValue: "id",
+                    itemDisplayName: "cityName",
+                    parentElement: this.element.find('.flight-to')
+                });
 
                 //create departure and arrive date using jquery date picker
                 this.departureDateControl = $(this.element).find('#datepicker-departure');

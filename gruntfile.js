@@ -51,11 +51,21 @@ module.exports = function(grunt) {
                     files: ['test/**/*.js']
                 }
             }
+        },
+        watch: {
+            scripts: {
+                files: ['js/**/*.styl'],
+                tasks: ['stylus'],
+                options: {
+                    spawn: false
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-stylus');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-karma');
 
