@@ -1,32 +1,39 @@
-/**
- * searchTabs_controller
- * this controller initials the service and the view
- */
-var searchTabs_controller = function() {
-    var controller = {
+define([], function () {
+    /**
+     * this controller initials the service and the view
+     * @class searchTabs_controller
+     * @param {Object} options
+     * @param {Object} options.service
+     * @param {Object} options.view
+     */
+    var searchTabs_controller = function(options) {
+        var controller = {
 
-        originList: null,
+            originList: null,
 
-        view: null,
+            view: null,
 
-        service: null,
+            service: null,
 
-        //initialise the service and view
-        init:  function() {
-            var self = this;
+            //initialise the service and view
+            init:  function() {
+                var self = this;
 
-            this.service = new searchTabs_service();
-            this.view = new searchTabs_view();
+                this.service = options.service;
+                this.view = options.view;
 
-            this.service.getFlightRoutes(function() {
+                this.service.getFlightRoutes(function() {
 
-                self.view.buildDropdowns(self.service.originList, self.service.destinationList);
-            });
+                    self.view.buildDropdowns(self.service.originList, self.service.destinationList);
+                });
 
-        }
+            }
+        };
+
+        controller.init();
+
+        return controller;
     };
 
-    controller.init();
-
-    return controller;
-};
+    return searchTabs_controller;
+});

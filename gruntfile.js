@@ -1,6 +1,15 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        requirejs: {
+            compile: {
+                options: {
+                    baseUrl: "js",
+                    mainConfigFile: "main.js",
+                    out: "build/main.js"
+                }
+            }
+        },
         stylus: {
             compile: {
                 options: {
@@ -45,6 +54,7 @@ module.exports = function(grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-contrib-stylus');
     grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-karma');
