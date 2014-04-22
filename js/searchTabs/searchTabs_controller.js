@@ -16,13 +16,16 @@ define([], function () {
 
             service: null,
 
+            isOneWay: null,
+
             //initialise the service and view
             init:  function() {
                 var self = this;
 
                 this.service = options.service;
                 this.view = options.view;
-                this.setCallbacks(options.callbacks);
+                this.isOneWay = options.options.isOneWay;
+                this.setCallbacks(options.options.callbacks);
 
                 function searchSubmit(data) {
                     self.searchSubmit(data);
@@ -56,12 +59,16 @@ define([], function () {
                 this.view.buildOriginDropdowns(this.service.originList, selectOrigin);
             },
 
+            updateIsOneWay: function(flag) {
+                this.isOneWay = flag;
+            },
+
             searchSubmit: function(data) {
                 var selectedOriginID = this.service.selectedOriginID,
                     selectedDestinationID = this.service.selectedDestinationID;
 
                 //check which tab it is on at the moment
-                if(data.isOneWay) {
+                if(this.isOneWay) {
                     if(selectedOriginID === null || selectedDestinationID === null || data.departureDate === "" || data.passengers === "") {
                         this.view.promtAlert("Please provide origin, destination, departure date and passengers number for the search.");
                         return;
@@ -76,6 +83,7 @@ define([], function () {
                 if(this.searchSubmitCallback) {
                     data.selectedOriginID = selectedOriginID;
                     data.selectedDestinationID = selectedDestinationID;
+                    data.isOneWay = this.isOneWay;
                     this.searchSubmitCallback(data);
                 }
             },
@@ -85,6 +93,8 @@ define([], function () {
              * the function will retrieve the available destination list when the origin selection is changed
              */
             getAvailableDestinations: function(selectedOrigin) {
+                var self = this;
+                
                 function selectDestination(selection) {
                     self.service.selectedDestinationID = parseInt(selection);
                 }
