@@ -1,3 +1,5 @@
+console.log('being loaded?');
+
 require([
     'searchTabs/searchTabs_controller',
     'searchTabs/searchTabs_service',
