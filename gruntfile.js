@@ -100,5 +100,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('default', ['jslint', 'karma', 'stylus']);
+    grunt.registerTask('default', ['karma', 'stylus']);
 };

@@ -5,13 +5,14 @@ define(['chai', 'chai-jquery', 'controls/select2Dropdown'], function (chai, plug
     chai.use(plugin);
 
     describe('Select2 Dropdown', function() {
+        var sandbox;
 
         beforeEach(function() {
-
+            sandbox = sinon.sandbox.create();
         });
 
         afterEach(function() {
-
+            sandbox.restore();
         });
 
         it('should fail to initialise if no parameters are passed in', function () {
