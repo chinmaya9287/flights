@@ -69,7 +69,7 @@ define([], function () {
                         }
                     }
 
-                    return false;0
+                    return false;
                 });
 
                 this.destinationList = this.groupByCountries(destinations);

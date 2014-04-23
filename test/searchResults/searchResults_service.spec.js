@@ -4,13 +4,14 @@ define(['chai', 'chai-jquery', 'searchResults/searchResults_service'], function 
     chai.use(plugin);
 
     describe('Search Results Service', function() {
+        var sandbox;
 
         beforeEach(function() {
-
+            sandbox = sinon.sandbox.create();
         });
 
         afterEach(function() {
-
+            sandbox.restore();
         });
 
         it('should initialise correctly', function () {

@@ -16,7 +16,8 @@
         paths: {
             'jquery': '../bower_components/jquery/jquery',
             'chai': '../node_modules/chai/chai',
-            'chai-jquery': '../node_modules/chai-jquery/chai-jquery'
+            'chai-jquery': '../node_modules/chai-jquery/chai-jquery',
+            underscore: '../bower_components/underscore/underscore'
         },
 
         shim: {
