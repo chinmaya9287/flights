@@ -13,6 +13,7 @@ require([
 
         //set up the tabs
         $("#tabs" ).tabs();
+        isOneWay = true;
 
         //initial the search results
         searchResults = new searchResults_controller({
@@ -25,34 +26,38 @@ require([
         searchTabs  = new searchTabs_controller({
             service: new searchTabs_service(),
             view: new searchTabs_view(),
-            callbacks: {
-                searchSubmitCallback: function(data) {
-                    searchResults.searchFlights(data);
-                },
-                refineSearchWithPriceCallback: function(priceFrom, priceTo) {
-                    searchResults.refineSearch(priceFrom, priceTo)
+            options: {
+                isOneWay: isOneWay,
+                callbacks: {
+                    searchSubmitCallback: function(data) {
+                        searchResults.searchFlights(data);
+                    },
+                    refineSearchWithPriceCallback: function(priceFrom, priceTo) {
+                        searchResults.refineSearch(priceFrom, priceTo)
+                    }
                 }
             }
+
         });
 
-
-
-        isOneWay = true;
         $('.one-way-tab').click(function() {
             //disable the arrive date picker
             searchTabs.view.disableArriveDatePicker(true);
             isOneWay = true;
+            searchTabs.updateIsOneWay(true);
         });
 
         $('.return-tab').click(function() {
             //disable the arrive date picker
             searchTabs.view.disableArriveDatePicker(false);
             isOneWay = false;
+            searchTabs.updateIsOneWay(false);
         });
 
 
         //attach the view to the left
         $('body').find(".search-form").append(searchTabs.view.element);
+        $('body').find(".search-results").append(searchResults.view.element);
     });
 });
 

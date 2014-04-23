@@ -1,4 +1,7 @@
-
+/**
+ * searchTabs_view
+ *
+ */
 define([
     'controls/select2Dropdown',
     'text!./searchTabs.html'
