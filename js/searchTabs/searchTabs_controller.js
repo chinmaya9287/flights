@@ -61,6 +61,7 @@ define([], function () {
 
             updateIsOneWay: function(flag) {
                 this.isOneWay = flag;
+                this.view.resetPrice();
             },
 
             searchSubmit: function(data) {

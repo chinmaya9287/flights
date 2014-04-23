@@ -14,15 +14,20 @@ define([
 
             element: null,
 
+            list: null,
+
 
             init: function() {
                 var self = this;
 
                 this.element = $(this.html);
+                this.list = [];
 
             },
 
             destroyList: function() {
+                this.list = [];
+
                 $(this.element).find(".flights-from-origin-list").remove();
                 $(this.element).find(".flights-from-destination-list").remove();
             },
@@ -43,6 +48,8 @@ define([
                     flightPrice: item.price
                 }));
 
+                itemElement.addClass('flight-id-'+ item.id);
+
                 return itemElement;
             },
 
@@ -55,6 +62,9 @@ define([
                 for(i=0;i<list.length;i++) {
                     item = this.buildItem(list[i], filterData);
 
+                    //add the item Elment to the list
+                    this.list.push({id: list[i].id, price: list[i].price, element: item});
+                    //attach to the parents
                     ulElement.append(item);
                 }
 
@@ -70,9 +80,17 @@ define([
             buildFlightsFromDestination: function(list, filterData) {
                 var listContainer = this.buildList(list, "flights-from-destination-list", filterData);
                 $(this.element).filter(".flights-from-destination").append(listContainer);
+            },
+
+            refineSearchByPrice: function(priceFrom, priceTo) {
+                _.each(this.list, function(item) {
+                    if(item.price >= priceFrom && item.price <= priceTo) {
+                        item.element.fadeOut();
+                    } else {
+                        item.element.fadeIn();
+                    }
+                });
             }
-
-
 
         };
 

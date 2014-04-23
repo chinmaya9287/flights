@@ -113,6 +113,26 @@ define([
 
             buildDestinationDropdown: function(destinationList, selectDestination) {
                 this.flightDestinationDropdown.buildOptions(destinationList, selectDestination);
+            },
+
+            displayPriceRange: function(selectPriceRange) {
+                var self = this;
+
+
+                $(this.element).filter('#price-range').slider({
+                    range: true,
+                    min: 100,
+                    max: 300,
+                    slide: function( event, ui ) {
+                        $(self.element).filter('.selected-price').text('$' + ui.value);
+                        selectPriceRange(ui.values[0], ui.values[1]);
+                    }
+                });
+            },
+
+            resetPrice: function() {
+                $(this.element).filter('#price-range').slider("option", "values", [100, 100]);
+                $(self.element).filter('.selected-price').text('$' + 100);
             }
         };
 

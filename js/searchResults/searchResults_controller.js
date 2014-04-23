@@ -14,6 +14,8 @@ define([], function () {
 
             service: null,
 
+            filterData: null,
+
             //initialise the service and view
             init:  function() {
                 var self = this;
@@ -27,9 +29,11 @@ define([], function () {
 
             },
 
-
+            //perform search action and generate the
             searchFlights: function(filterData) {
                 var self = this;
+
+                this.filterData = filterData;
 
                 //destroy the list
                 this.view.destroyList();
@@ -38,7 +42,7 @@ define([], function () {
                 this.service.filterFlightsFromOrigin(filterData, function(list) {
                     self.view.buildFlightsFromOrigin(list, filterData);
                 });
-                
+
                 //render the flight list from destination if it is return
                 if(filterData.isOneWay === false) {
                     this.service.filterFlightsFromDestination(filterData, function(list) {
@@ -50,7 +54,11 @@ define([], function () {
             },
 
             refineSearch: function(priceFrom, priceTo) {
+                this.view.refineSearchByPrice(priceFrom, priceTo);
+            },
 
+            clearList: function() {
+                this.view.destroyList();
             }
 
 

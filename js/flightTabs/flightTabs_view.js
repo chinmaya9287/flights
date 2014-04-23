@@ -36,7 +36,7 @@ define([
 
                 });
 
-                $('.return-tab').click(function() {
+                $(this.element).find('.return-tab').click(function() {
                     if(callback) {
                         callback(false);
                     }
