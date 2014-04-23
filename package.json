@@ -4,12 +4,24 @@
     "version": "1.0.0",
     "main": "js/main.js",
     "dependencies": {
+        "chai-jquery": "*",
         "grunt": "*",
         "grunt-contrib-requirejs": "*",
         "grunt-contrib-stylus": "*",
         "grunt-contrib-watch": "*",
         "grunt-jslint": "*",
         "grunt-karma": "*",
-        "karma-mocha": "*"
+        "karma": "*",
+        "karma-chai": "*",
+        "karma-chrome-launcher": "*",
+        "karma-firefox-launcher": "*",
+        "karma-html2js-preprocessor": "*",
+        "karma-jasmine": "*",
+        "karma-mocha": "*",
+        "karma-phantomjs-launcher": "*",
+        "karma-requirejs": "*",
+        "karma-script-launcher": "*",
+        "karma-sinon": "*",
+        "mocha": "*"
     }
 }

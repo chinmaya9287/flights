@@ -23,6 +23,132 @@
         "arrivalDateTime": "2014-04-21T09:00:00.000Z",
         "price": 150
     },
+
+    {
+        "id": 133,
+        "flightNumber": "A-133",
+        "flightRouteID": 1,
+        "originCityID": 1,
+        "originCityName": "Adelaide",
+        "destinationCityID": 2,
+        "destinationCityName": "Brisbane",
+        "departureDateTime": "2014-04-21T21:00:00.000Z",
+        "arrivalDateTime": "2014-04-21T22:00:00.000Z",
+        "price": 170
+    },
+    {
+        "id": 134,
+        "flightNumber": "A-134",
+        "flightRouteID": 1,
+        "originCityID": 2,
+        "originCityName": "Brisbane",
+        "destinationCityID": 1,
+        "destinationCityName": "Adelaide",
+        "departureDateTime": "2014-04-21T09:00:00.000Z",
+        "arrivalDateTime": "2014-04-21T10:00:00.000Z",
+        "price": 170
+    },
+
+    {
+        "id": 135,
+        "flightNumber": "A-135",
+        "flightRouteID": 1,
+        "originCityID": 1,
+        "originCityName": "Adelaide",
+        "destinationCityID": 2,
+        "destinationCityName": "Brisbane",
+        "departureDateTime": "2014-04-21T22:00:00.000Z",
+        "arrivalDateTime": "2014-04-21T23:00:00.000Z",
+        "price": 190
+    },
+    {
+        "id": 136,
+        "flightNumber": "A-136",
+        "flightRouteID": 1,
+        "originCityID": 2,
+        "originCityName": "Brisbane",
+        "destinationCityID": 1,
+        "destinationCityName": "Adelaide",
+        "departureDateTime": "2014-04-21T10:00:00.000Z",
+        "arrivalDateTime": "2014-04-21T11:00:00.000Z",
+        "price": 190
+    },
+
+    {
+        "id": 137,
+        "flightNumber": "A-137",
+        "flightRouteID": 1,
+        "originCityID": 1,
+        "originCityName": "Adelaide",
+        "destinationCityID": 2,
+        "destinationCityName": "Brisbane",
+        "departureDateTime": "2014-04-21T23:00:00.000Z",
+        "arrivalDateTime": "2014-04-21T00:00:00.000Z",
+        "price": 210
+    },
+    {
+        "id": 138,
+        "flightNumber": "A-138",
+        "flightRouteID": 1,
+        "originCityID": 2,
+        "originCityName": "Brisbane",
+        "destinationCityID": 1,
+        "destinationCityName": "Adelaide",
+        "departureDateTime": "2014-04-21T11:00:00.000Z",
+        "arrivalDateTime": "2014-04-21T12:00:00.000Z",
+        "price": 210
+    },
+
+    {
+        "id": 139,
+        "flightNumber": "A-139",
+        "flightRouteID": 1,
+        "originCityID": 1,
+        "originCityName": "Adelaide",
+        "destinationCityID": 2,
+        "destinationCityName": "Brisbane",
+        "departureDateTime": "2014-04-21T00:00:00.000Z",
+        "arrivalDateTime": "2014-04-21T01:00:00.000Z",
+        "price": 230
+    },
+    {
+        "id": 140,
+        "flightNumber": "A-140",
+        "flightRouteID": 1,
+        "originCityID": 2,
+        "originCityName": "Brisbane",
+        "destinationCityID": 1,
+        "destinationCityName": "Adelaide",
+        "departureDateTime": "2014-04-21T12:00:00.000Z",
+        "arrivalDateTime": "2014-04-21T13:00:00.000Z",
+        "price": 230
+    },
+
+    {
+        "id": 141,
+        "flightNumber": "A-141",
+        "flightRouteID": 1,
+        "originCityID": 1,
+        "originCityName": "Adelaide",
+        "destinationCityID": 2,
+        "destinationCityName": "Brisbane",
+        "departureDateTime": "2014-04-21T01:00:00.000Z",
+        "arrivalDateTime": "2014-04-21T02:00:00.000Z",
+        "price": 250
+    },
+    {
+        "id": 142,
+        "flightNumber": "A-142",
+        "flightRouteID": 1,
+        "originCityID": 2,
+        "originCityName": "Brisbane",
+        "destinationCityID": 1,
+        "destinationCityName": "Adelaide",
+        "departureDateTime": "2014-04-21T13:00:00.000Z",
+        "arrivalDateTime": "2014-04-21T14:00:00.000Z",
+        "price": 250
+    },
+
     {
         "id": 3,
         "flightNumber": "A-003",
