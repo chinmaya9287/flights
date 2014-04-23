@@ -18,8 +18,6 @@ define([], function () {
             selectedDestinationID: null,
 
             init: function() {
-                console.log("initialising the service");
-
                 //initialise the variables
                 this.originList = [];
                 this.destinationList = [];
