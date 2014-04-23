@@ -78,7 +78,9 @@ define(['chai', 'chai-jquery', 'searchTabs/searchTabs_controller'], function (ch
 
         it('should update one way flag', function () {
             var searchTabsControllerInstance = new searchTabs_controller({
-                    view: {},
+                    view: {
+                        resetPrice: function() {}
+                    },
                     service: {
                         getFlightRoutes: function () {}
                     },
