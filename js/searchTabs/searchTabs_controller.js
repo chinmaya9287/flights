@@ -94,7 +94,7 @@ define([], function () {
              */
             getAvailableDestinations: function(selectedOrigin) {
                 var self = this;
-                
+
                 function selectDestination(selection) {
                     self.service.selectedDestinationID = parseInt(selection);
                 }
