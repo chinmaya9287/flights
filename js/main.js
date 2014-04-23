@@ -39,15 +39,15 @@ require([
         });
 
         $('.one-way-tab').click(function() {
-            //disable the arrive date picker
-            searchTabs.view.disableArriveDatePicker(true);
+            //disable the return date picker
+            searchTabs.view.disableReturnDatePicker(true);
             isOneWay = true;
             searchTabs.updateIsOneWay(true);
         });
 
         $('.return-tab').click(function() {
-            //disable the arrive date picker
-            searchTabs.view.disableArriveDatePicker(false);
+            //disable the return date picker
+            searchTabs.view.disableReturnDatePicker(false);
             isOneWay = false;
             searchTabs.updateIsOneWay(false);
         });

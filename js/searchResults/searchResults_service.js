@@ -63,10 +63,11 @@ define([], function () {
              */
             filterFlightsFromDestination: function(filterData, callback) {
                 var data = {
-                    originCityID: filterData.destinationList,
-                    destinationCityID: filterData.originCityID,
+                    selectedOriginID: filterData.selectedDestinationID,
+                    selectedDestinationID: filterData.selectedOriginID,
                     departureDate: filterData.departureDate,
-                    arriveDate: filterData.arriveDate
+                    returnDate: filterData.returnDate,
+                    passengers: filterData.passengers
                 };
 
                 this.filteredFlightList = this.filterFlights(data);

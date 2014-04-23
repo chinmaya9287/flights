@@ -36,13 +36,13 @@ define([], function () {
 
                 //render the flight list from origin
                 this.service.filterFlightsFromOrigin(filterData, function(list) {
-                    self.view.buildFlightsFromOrigin(list);
+                    self.view.buildFlightsFromOrigin(list, filterData);
                 });
                 
                 //render the flight list from destination if it is return
                 if(filterData.isOneWay === false) {
                     this.service.filterFlightsFromDestination(filterData, function(list) {
-                        self.view.buildFlightsFromDestination(list);
+                        self.view.buildFlightsFromDestination(list, filterData);
                     });
 
                 }

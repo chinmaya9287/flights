@@ -19,7 +19,7 @@ define([
 
             departureDateControl: null,
 
-            arriveDateControl: null,
+            returnDateControl: null,
 
             passengersControl: null,
 
@@ -30,7 +30,7 @@ define([
 
 
                 //default the one way tab is selected
-                this.disableArriveDatePicker(true);
+                this.disableReturnDatePicker(true);
 
 
                 //create origin dropdown and destination dropdown using select2 dropdown
@@ -50,15 +50,15 @@ define([
                     parentElement: this.element.find('.flight-to')
                 });
 
-                //create departure and arrive date using jquery date picker
+                //create departure and return date using jquery date picker
                 this.departureDateControl = $(this.element).find('#datepicker-departure');
-                this.arriveDateControl = $(this.element).find('#datepicker-arrive');
+                this.returnDateControl = $(this.element).find('#datepicker-return');
                 this.passengersControl = $(this.element).find("#passengers-number");
 
                 this.departureDateControl.datepicker();
                 this.departureDateControl.datepicker("option", "dateFormat", "dd MM yy");
-                this.arriveDateControl.datepicker();
-                this.arriveDateControl.datepicker("option", "dateFormat", "dd MM yy");
+                this.returnDateControl.datepicker();
+                this.returnDateControl.datepicker("option", "dateFormat", "dd MM yy");
 
                 this.passengersControl.spinner({
                     min: 1,
@@ -71,18 +71,18 @@ define([
 
             bindUIEvents: function(searchSelected) {
                 var data = {}, self = this,
-                    departureDate, arriveDate, passengers;
+                    departureDate, returnDate, passengers;
 
                 //bind UI events
                 $(this.element).find(".btn-search").click(function() {
 
                     departureDate = self.departureDateControl.val();
-                    arriveDate = self.arriveDateControl.val();
+                    returnDate = self.returnDateControl.val();
                     passengers = self.passengersControl.val();
 
                     data = {
                         departureDate: departureDate,
-                        arriveDate: arriveDate,
+                        returnDate: returnDate,
                         passengers: passengers
                     };
 
@@ -97,13 +97,13 @@ define([
                 alert(message);
             },
 
-            disableArriveDatePicker: function(isDisable) {
-                var arriveControl =  $(this.element).find('#datepicker-arrive');
+            disableReturnDatePicker: function(isDisable) {
+                var returnControl =  $(this.element).find('#datepicker-return');
 
                 if(isDisable) {
-                   arriveControl.attr('disabled','disabled');
+                   returnControl.attr('disabled','disabled');
                 } else {
-                   arriveControl.removeAttr('disabled');
+                   returnControl.removeAttr('disabled');
                 }
             },
 

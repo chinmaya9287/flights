@@ -27,25 +27,33 @@ define([
                 $(this.element).find(".flights-from-destination-list").remove();
             },
 
-            buildItem: function(item) {
+            buildItem: function(item, filterData) {
                 var itemElement, itemTemp,
                     title = "From " + item.originCityName + " to " + item.destinationCityName;
 
                 itemTemp = _.template(itemTemplate);
 
-                itemElement = $(itemTemp({title: title}));
+                itemElement = $(itemTemp({
+                    title: title,
+                    flightNumber: item.flightNumber,
+                    departureDate: filterData.departureDate,
+                    arriveDate: filterData.departureDate,
+                    departureTime: moment(item.departureDateTime).format( "HH:mm"),
+                    arriveTime: moment(item.arriveDateTime).format( "HH:mm"),
+                    flightPrice: item.price
+                }));
 
                 return itemElement;
             },
 
-            buildList: function(list, className) {
+            buildList: function(list, className, filterData) {
                 var i, item, listContainer = $('<div class="'+ className +'"></div>'),
                     ulElement = $('<ul></ul>');
 
                 listContainer.append(ulElement);
 
                 for(i=0;i<list.length;i++) {
-                    item = this.buildItem(list[i]);
+                    item = this.buildItem(list[i], filterData);
 
                     ulElement.append(item);
                 }
@@ -53,14 +61,14 @@ define([
                 return listContainer;
             },
 
-            buildFlightsFromOrigin: function(list) {
-                var listContainer = this.buildList(list, "flights-from-origin-list");
+            buildFlightsFromOrigin: function(list, filterData) {
+                var listContainer = this.buildList(list, "flights-from-origin-list", filterData);
                 $(this.element).filter(".flights-from-origin").append(listContainer);
             },
 
-            buildFlightsFromDestination: function(list) {
-                var listContainer = this.buildList(list, "flights-from-destination-list");
-                $(this.element).find(".flights-from-destination").append(listContainer);
+            buildFlightsFromDestination: function(list, filterData) {
+                var listContainer = this.buildList(list, "flights-from-destination-list", filterData);
+                $(this.element).filter(".flights-from-destination").append(listContainer);
             }
 
 

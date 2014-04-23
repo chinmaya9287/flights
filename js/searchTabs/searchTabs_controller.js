@@ -74,8 +74,8 @@ define([], function () {
                         return;
                     }
                 } else {
-                    if(selectedOriginID === null || selectedDestinationID === null || data.departureDate === "" || data.arriveDate === "" || data.passengers === "") {
-                        this.view.promtAlert("Please provide origin, destination, departure date, arrive date and passengers number for the search.");
+                    if(selectedOriginID === null || selectedDestinationID === null || data.departureDate === "" || data.returnDate === "" || data.passengers === "") {
+                        this.view.promtAlert("Please provide origin, destination, departure date, return date and passengers number for the search.");
                         return;
                     }
                 }
