@@ -21,6 +21,6 @@ define(['chai', 'chai-jquery', 'searchResults/searchResults_view'], function (ch
 
             expect(createSearchResultsView).to.not.throw(Error);
         });
-        
+
     });
 });
