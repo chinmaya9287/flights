@@ -13,6 +13,13 @@ define(['chai', 'chai-jquery', 'searchResults/searchResults_service'], function 
 
         });
 
+        it('should initialise correctly', function () {
+            function createSearchResultsService() {
+                var searchResultsServiceInstance = new searchResults_service();
+            }
+
+            expect(createSearchResultsService).to.not.throw(Error);
+        });
 
     });
 });

@@ -13,6 +13,13 @@ define(['chai', 'chai-jquery', 'searchTabs/searchTabs_service'], function (chai,
 
         });
 
+        it('should initialise correctly', function () {
+            function createSearchTabsService() {
+                var searchTabsServiceInstance = new searchTabs_service();
+            }
+
+            expect(createSearchTabsService).to.not.throw(Error);
+        });
 
     });
 });

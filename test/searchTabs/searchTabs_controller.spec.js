@@ -13,6 +13,21 @@ define(['chai', 'chai-jquery', 'searchTabs/searchTabs_controller'], function (ch
 
         });
 
+        it('should initialise correctly when passed a view and a service', function () {
+            function createSearchTabsController() {
+                var searchTabsControllerInstance = new searchTabs_controller({
+                    view: {},
+                    service: {
+                        getFlightRoutes: function () {}
+                    },
+                    options: {
+                        callbacks: {}
+                    }
+                });
+            }
+
+            expect(createSearchTabsController).to.not.throw(Error);
+        });
 
     });
 });

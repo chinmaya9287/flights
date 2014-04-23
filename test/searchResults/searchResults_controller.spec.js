@@ -13,6 +13,18 @@ define(['chai', 'chai-jquery', 'searchResults/searchResults_controller'], functi
 
         });
 
+        it('should initialise correctly when passed a view and a service', function () {
+            function createSearchResultsController() {
+                var searchResultsControllerInstance = new searchResults_controller({
+                    view: {},
+                    service: {
+                        getFlights: function () {}
+                    }
+                });
+            }
+
+            expect(createSearchResultsController).to.not.throw(Error);
+        });
 
     });
 });
