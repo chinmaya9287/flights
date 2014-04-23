@@ -63,6 +63,7 @@ module.exports = function(grunt) {
                         'bower_components/select2/select2.js',
                         'bower_components/underscore/underscore.js',
 
+                        {pattern: 'js/**/*.html', included: false},
                         {pattern: 'js/**/*.js', included: false},
                         {pattern: 'test/**/*.spec.js', included: false},
 
