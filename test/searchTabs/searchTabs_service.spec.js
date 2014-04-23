@@ -8,7 +8,6 @@ define(['chai', 'chai-jquery', 'searchTabs/searchTabs_service'], function (chai,
 
         beforeEach(function() {
             sandbox = sinon.sandbox.create();
-            chai.should();
         });
 
         afterEach(function() {

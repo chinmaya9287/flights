@@ -4,13 +4,14 @@ define(['chai', 'chai-jquery', 'searchResults/searchResults_view'], function (ch
     chai.use(plugin);
 
     describe('Search Results View', function() {
+        var sandbox;
 
         beforeEach(function() {
-
+            sandbox = sinon.sandbox.create();
         });
 
         afterEach(function() {
-
+            sandbox.restore();
         });
 
         it('should initialise correctly', function () {
@@ -20,6 +21,6 @@ define(['chai', 'chai-jquery', 'searchResults/searchResults_view'], function (ch
 
             expect(createSearchResultsView).to.not.throw(Error);
         });
-
+        
     });
 });
