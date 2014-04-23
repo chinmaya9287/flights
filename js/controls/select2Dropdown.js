@@ -2,12 +2,11 @@ define([], function () {
     /**
      * @class select2Dropdown
      * @param {Object} options
-     * @param {Array} options.list
-     * @param {String} options.className
-     * @param {String} options.groupName
-     * @param {String} options.optionListName
-     * @param {String} options.itemName
-     * @param {HTMLElement} options.parementElement
+     * @param {String} options.id
+     * @param {HTMLElement} options.parentElement
+     * @param {String} [options.className]
+     * @param {String} [options.itemValue="id"]
+     * @param {String} [options.itemDisplayName="name"]
      */
     var select2Dropdown = function(options) {
 
@@ -39,8 +38,6 @@ define([], function () {
                 if(options.className) {
                     $(this.element).addClass(options.className);
                 }
-
-
             },
 
             buildOptions: function(dataList, selectCallback) {

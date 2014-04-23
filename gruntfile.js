@@ -46,9 +46,39 @@ module.exports = function(grunt) {
         },
         karma: {
             unit: {
-                frameworks: ['mocha'],
+                frameworks: [
+                    'chai',
+                    'mocha',
+                    'sinon'
+                ],
                 options: {
-                    files: ['test/**/*.js']
+                    files: [
+                        'bower_components/requirejs/require.js',
+                        'node_modules/karma-requirejs/lib/adapter.js',
+
+                        'bower_components/jquery/jquery.js',
+                        {pattern: 'node_modules/chai-jquery/chai-jquery.js', included: false},
+
+                        'bower_components/jquery-ui/ui/jquery-ui.js',
+                        'bower_components/select2/select2.js',
+                        'bower_components/underscore/underscore.js',
+
+                        {pattern: 'js/**/*.js', included: false},
+                        {pattern: 'test/**/*.spec.js', included: false},
+
+                        'test/main-test.js'
+                    ],
+                    exclude: [
+                        'js/main.js'
+                    ],
+                    reporters: ['progress'],
+                    port: 9999,
+                    colors: true,
+//                    logLevel: config.LOG_ERROR,
+                    autoWatch: false,
+                    browsers: ['PhantomJS'],
+                    captureTimeout: 6000,
+                    singleRun: true
                 }
             }
         },
