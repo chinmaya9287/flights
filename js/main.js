@@ -6,14 +6,25 @@ require([
     'searchTabs/searchTabs_view',
     'searchResults/searchResults_controller',
     'searchResults/searchResults_service',
-    'searchResults/searchResults_view'
-], function (searchTabs_controller, searchTabs_service, searchTabs_view, searchResults_controller, searchResults_service, searchResults_view) {
+    'searchResults/searchResults_view',
+    'flightTabs/flightTabs_controller',
+    'flightTabs/flightTabs_view'
+], function (searchTabs_controller, searchTabs_service, searchTabs_view, searchResults_controller,
+             searchResults_service, searchResults_view, flightTabs_controller, flightTabs_view) {
     $(document).ready(function() {
-        var searchTabs, searchResults, isOneWay;
+        var flightTabs, searchTabs, searchResults;
 
-        //set up the tabs
-        $("#tabs" ).tabs();
-        isOneWay = true;
+
+        //initial the flight tab 
+        flightTabs = new flightTabs_controller({
+            view: new flightTabs_view()
+        });
+
+        //attach the view to the content
+        $('body').find("#content").append(flightTabs.view.element);
+
+        //the tab should only be triggered after it is attached to the DOM
+        flightTabs.view.tab();
 
         //initial the search results
         searchResults = new searchResults_controller({
@@ -27,7 +38,7 @@ require([
             service: new searchTabs_service(),
             view: new searchTabs_view(),
             options: {
-                isOneWay: isOneWay,
+                isOneWay: flightTabs.isOneWay,
                 callbacks: {
                     searchSubmitCallback: function(data) {
                         searchResults.searchFlights(data);
@@ -40,24 +51,12 @@ require([
 
         });
 
-        $('.one-way-tab').click(function() {
-            //disable the return date picker
-            searchTabs.view.disableReturnDatePicker(true);
-            isOneWay = true;
-            searchTabs.updateIsOneWay(true);
+        //attach sub views to the tab control
+        flightTabs.view.attachSections({
+            searchForm: searchTabs.view.element,
+            searchResults: searchResults.view.element
         });
 
-        $('.return-tab').click(function() {
-            //disable the return date picker
-            searchTabs.view.disableReturnDatePicker(false);
-            isOneWay = false;
-            searchTabs.updateIsOneWay(false);
-        });
-
-
-        //attach the view to the left
-        $('body').find(".search-form").append(searchTabs.view.element);
-        $('body').find(".search-results").append(searchResults.view.element);
     });
 });
 

@@ -63,6 +63,7 @@ define([
 
             buildFlightsFromOrigin: function(list, filterData) {
                 var listContainer = this.buildList(list, "flights-from-origin-list", filterData);
+
                 $(this.element).filter(".flights-from-origin").append(listContainer);
             },
 
