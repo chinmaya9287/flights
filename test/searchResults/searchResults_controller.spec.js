@@ -1,4 +1,4 @@
-define(['chai', 'chai-jquery', 'searchResults/searchResults_controller'], function (chai, plugin, searchResults_controller) {
+define(['chai', 'chai-jquery', 'searchResults/SearchResults_controller'], function (chai, plugin, SearchResults_controller) {
 
     var expect = chai.expect;
     chai.use(plugin);
@@ -16,7 +16,7 @@ define(['chai', 'chai-jquery', 'searchResults/searchResults_controller'], functi
 
         it('should initialise correctly when passed a view and a service', function () {
             function createSearchResultsController() {
-                var searchResultsControllerInstance = new searchResults_controller({
+                var searchResultsControllerInstance = new SearchResults_controller({
                     view: {},
                     service: {
                         getFlights: function () {}

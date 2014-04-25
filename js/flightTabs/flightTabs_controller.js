@@ -1,11 +1,14 @@
 define([], function () {
+
+    'use strict';
+
     /**
      * this controller initials the view
      * @class flightTabs_controller
      * @param {Object} options
      * @param {Object} options.view
      */
-    return function(options) {
+    return function (options) {
         var controller = {
 
             view: null,
@@ -13,7 +16,7 @@ define([], function () {
             isOneWay: null,
 
             //initialise the service and view
-            init:  function() {
+            init: function () {
                 var self = this;
 
                 this.view = options.view;
@@ -30,16 +33,16 @@ define([], function () {
 
             },
 
-            setCallbacks: function(callbacks) {
-                if(callbacks) {
+            setCallbacks: function (callbacks) {
+                if (callbacks) {
                     this.clickTabCallback = callbacks.clickTabCallback;
                 }
             },
 
-            clickTab: function(isOneWay) {
+            clickTab: function (isOneWay) {
                 this.isOneWay = isOneWay;
 
-                if(this.clickTabCallback) {
+                if (this.clickTabCallback) {
                     this.clickTabCallback(isOneWay);
                 }
             }

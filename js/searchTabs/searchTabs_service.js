@@ -1,8 +1,11 @@
-define([], function () {
+define(['jquery', 'underscore'], function ($, _) {
+
+    'use strict';
+
     /**
      * @class searchTabs_service
      */
-    return function() {
+    return function () {
         var service = {
 
             originList: null,
@@ -17,7 +20,7 @@ define([], function () {
 
             selectedDestinationID: null,
 
-            init: function() {
+            init: function () {
                 //initialise the variables
                 this.originList = [];
                 this.destinationList = [];
@@ -25,46 +28,42 @@ define([], function () {
                 this.cityList = [];
             },
 
-            getFlightRoutes: function(successCallback) {
+            getFlightRoutes: function (successCallback) {
                 var self = this;
 
                 $.ajax({
                     url: 'json/flights_routes.json',
                     dataType: 'json'
-                })
-                    .done(function(data) {
-                        self.cityList = data.cities;
+                }).done(function (data) {
+                    self.cityList = data.cities;
 
-                        self.originList = self.groupByCountries(data.cities);
-                        self.flightRoutes = data.flightRoutes;
+                    self.originList = self.groupByCountries(data.cities);
+                    self.flightRoutes = data.flightRoutes;
 
-                        if(successCallback) {
-                            successCallback(data);
-                        }
-
-                    }).fail(function() {
-
-                    });
+                    if (successCallback) {
+                        successCallback(data);
+                    }
+                });
             },
 
-            preselectOrigin: function() {
+            preselectOrigin: function () {
                 //preselect the first city in the list
                 this.selectedOriginID = this.cityList[0].id;
 
             },
 
-            getAvailableDestinations: function(selectedOrigin) {
+            getAvailableDestinations: function (selectedOrigin) {
                 //find the flight routes that contains selected origin
                 var i, destinations,
-                    filteredFlightRoutes = _.filter(this.flightRoutes, function(item) {
-                     return item.originCityID === parseInt(selectedOrigin);
+                    filteredFlightRoutes = _.filter(this.flightRoutes, function (item) {
+                        return item.originCityID === parseInt(selectedOrigin, 10);
                     });
 
                 //get the get destination city list
-                destinations = _.filter(this.cityList, function(item) {
+                destinations = _.filter(this.cityList, function (item) {
 
-                    for(i=0; i< filteredFlightRoutes.length; i++) {
-                        if(filteredFlightRoutes[i].destinationCityID === item.id) {
+                    for (i = 0; i < filteredFlightRoutes.length; i++) {
+                        if (filteredFlightRoutes[i].destinationCityID === item.id) {
                             return true;
                         }
                     }
@@ -76,7 +75,7 @@ define([], function () {
                 this.selectedDestinationID = destinations[0].id;
             },
 
-            groupByCountries: function(cities) {
+            groupByCountries: function (cities) {
                 return _.groupBy(cities, 'countryName');
             }
         };

@@ -1,25 +1,28 @@
 require([
-    'searchTabs/searchTabs_controller',
-    'searchTabs/searchTabs_service',
-    'searchTabs/searchTabs_view',
-    'searchResults/searchResults_controller',
-    'searchResults/searchResults_service',
-    'searchResults/searchResults_view',
-    'flightTabs/flightTabs_controller',
-    'flightTabs/flightTabs_view'
-], function (searchTabs_controller, searchTabs_service, searchTabs_view, searchResults_controller,
-             searchResults_service, searchResults_view, flightTabs_controller, flightTabs_view) {
-    $(document).ready(function() {
+    'jquery',
+    'searchTabs/SearchTabs_controller',
+    'searchTabs/SearchTabs_service',
+    'searchTabs/SearchTabs_view',
+    'searchResults/SearchResults_controller',
+    'searchResults/SearchResults_service',
+    'searchResults/SearchResults_view',
+    'flightTabs/FlightTabs_controller',
+    'flightTabs/FlightTabs_view'
+], function ($, SearchTabs_controller, SearchTabs_service, SearchTabs_view, SearchResults_controller, SearchResults_service, SearchResults_view, FlightTabs_controller, FlightTabs_view) {
+
+    'use strict';
+
+    $(document).ready(function () {
         var flightTabs, searchTabs, searchResults;
 
 
         //initial the flight tab
-        flightTabs = new flightTabs_controller({
-            view: new flightTabs_view(),
+        flightTabs = new FlightTabs_controller({
+            view: new FlightTabs_view(),
             options: {
                 callbacks: {
-                    clickTabCallback: function(isOneWay) {
-                        if(isOneWay){
+                    clickTabCallback: function (isOneWay) {
+                        if (isOneWay) {
                             //disable the return date picker
                             searchTabs.view.disableReturnDatePicker(true);
                             searchTabs.updateIsOneWay(true);
@@ -46,20 +49,20 @@ require([
         flightTabs.view.tab();
 
         //initial the search results
-        searchResults = new searchResults_controller({
-            service: new searchResults_service(),
-            view: new searchResults_view()
+        searchResults = new SearchResults_controller({
+            service: new SearchResults_service(),
+            view: new SearchResults_view()
         });
 
 
         //initial the search tab
-        searchTabs  = new searchTabs_controller({
-            service: new searchTabs_service(),
-            view: new searchTabs_view(),
+        searchTabs = new SearchTabs_controller({
+            service: new SearchTabs_service(),
+            view: new SearchTabs_view(),
             options: {
                 isOneWay: flightTabs.isOneWay,
                 callbacks: {
-                    searchSubmitCallback: function(data) {
+                    searchSubmitCallback: function (data) {
                         searchResults.searchFlights(data);
                     }
                 }
@@ -74,7 +77,7 @@ require([
         });
 
         //bind the events for price slider
-        searchTabs.view.displayPriceRange(function(priceFrom, priceTo){
+        searchTabs.view.displayPriceRange(function (priceFrom, priceTo) {
             searchResults.refineSearch(priceFrom, priceTo);
         });
 

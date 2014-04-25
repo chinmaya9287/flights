@@ -1,4 +1,4 @@
-define(['chai', 'chai-jquery', 'controls/select2Dropdown'], function (chai, plugin, select2Dropdown) {
+define(['chai', 'chai-jquery', 'controls/Select2Dropdown'], function (chai, plugin, Select2Dropdown) {
 
     var expect = chai.expect;
 
@@ -17,7 +17,7 @@ define(['chai', 'chai-jquery', 'controls/select2Dropdown'], function (chai, plug
 
         it('should fail to initialise if no parameters are passed in', function () {
             function createSelect2Dropdown() {
-                var selectInstance = new select2Dropdown();
+                var selectInstance = new Select2Dropdown();
             }
 
             expect(createSelect2Dropdown).to.throw(Error);
@@ -25,7 +25,7 @@ define(['chai', 'chai-jquery', 'controls/select2Dropdown'], function (chai, plug
 
         it('should initialise correctly when created with required parameters', function () {
             function createSelect2Dropdown() {
-                var selectInstance = new select2Dropdown({
+                var selectInstance = new Select2Dropdown({
                     id: 'selectID',
                     parentElement: $('<div></div>')
                 });
@@ -35,7 +35,7 @@ define(['chai', 'chai-jquery', 'controls/select2Dropdown'], function (chai, plug
         });
 
         it('should have a class name when passed a class name parameter', function () {
-            var selectInstance = new select2Dropdown({
+            var selectInstance = new Select2Dropdown({
                 id: 'selectID',
                 parentElement: $('<div></div>'),
                 className: 'testClass'
@@ -50,7 +50,7 @@ define(['chai', 'chai-jquery', 'controls/select2Dropdown'], function (chai, plug
                 $group,
                 $option;
 
-            selectInstance = new select2Dropdown({
+            selectInstance = new Select2Dropdown({
                 id: 'selectID',
                 parentElement: $('<div></div>')
             });
@@ -85,7 +85,7 @@ define(['chai', 'chai-jquery', 'controls/select2Dropdown'], function (chai, plug
                 $option3,
                 $option4;
 
-            selectInstance = new select2Dropdown({
+            selectInstance = new Select2Dropdown({
                 id: 'selectID',
                 parentElement: $('<div></div>')
             });
