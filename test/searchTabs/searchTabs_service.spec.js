@@ -1,4 +1,4 @@
-define(['chai', 'chai-jquery', 'searchTabs/searchTabs_service'], function (chai, plugin, searchTabs_service) {
+define(['chai', 'chai-jquery', 'searchTabs/SearchTabs_service'], function (chai, plugin, SearchTabs_service) {
 
     var expect = chai.expect;
     chai.use(plugin);
@@ -16,14 +16,14 @@ define(['chai', 'chai-jquery', 'searchTabs/searchTabs_service'], function (chai,
 
         it('should initialise correctly', function () {
             function createSearchTabsService() {
-                var searchTabsServiceInstance = new searchTabs_service();
+                var searchTabsServiceInstance = new SearchTabs_service();
             }
 
             expect(createSearchTabsService).to.not.throw(Error);
         });
 
         it('should retrieve a list of flight routes and make a call to format the data', function () {
-            var searchTabsServiceInstance = new searchTabs_service(),
+            var searchTabsServiceInstance = new SearchTabs_service(),
                 groupByCountriesStub,
                 ajaxStub,
                 data = {
@@ -74,7 +74,7 @@ define(['chai', 'chai-jquery', 'searchTabs/searchTabs_service'], function (chai,
         });
 
         it('should group cities by country', function () {
-            var searchTabsServiceInstance = new searchTabs_service(),
+            var searchTabsServiceInstance = new SearchTabs_service(),
                 data = {
                     cities: [
                         {
@@ -102,7 +102,7 @@ define(['chai', 'chai-jquery', 'searchTabs/searchTabs_service'], function (chai,
         });
 
         it('should preselect the first city in the list', function () {
-            var searchTabsServiceInstance = new searchTabs_service(),
+            var searchTabsServiceInstance = new SearchTabs_service(),
                 data = {
                     cities: [
                         {
@@ -128,7 +128,7 @@ define(['chai', 'chai-jquery', 'searchTabs/searchTabs_service'], function (chai,
         });
 
         it('should return all available destinations for the selected origin', function () {
-            var searchTabsServiceInstance = new searchTabs_service(),
+            var searchTabsServiceInstance = new SearchTabs_service(),
                 data = {
                     cities: [
                         {

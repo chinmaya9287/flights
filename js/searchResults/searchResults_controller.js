@@ -1,4 +1,7 @@
 define([], function () {
+
+    'use strict';
+
     /**
      * this controller initials the service and the view
      * @class searchResults_controller
@@ -7,7 +10,7 @@ define([], function () {
      * @param {Object} options.view
      * @param {Object} options.callbacks
      */
-    return function(options) {
+    return function (options) {
         var controller = {
 
             view: null,
@@ -17,20 +20,15 @@ define([], function () {
             filterData: null,
 
             //initialise the service and view
-            init:  function() {
-                var self = this;
-
+            init: function () {
                 this.service = options.service;
                 this.view = options.view;
 
-                this.service.getFlights(function() {
-
-                });
-
+                this.service.getFlights();
             },
 
             //perform search action and generate the
-            searchFlights: function(filterData) {
+            searchFlights: function (filterData) {
                 var self = this;
 
                 this.filterData = filterData;
@@ -39,13 +37,13 @@ define([], function () {
                 this.view.destroyList();
 
                 //render the flight list from origin
-                this.service.filterFlightsFromOrigin(filterData, function(list) {
+                this.service.filterFlightsFromOrigin(filterData, function (list) {
                     self.view.buildFlightsFromOrigin(list, filterData);
                 });
 
                 //render the flight list from destination if it is return
-                if(filterData.isOneWay === false) {
-                    this.service.filterFlightsFromDestination(filterData, function(list) {
+                if (filterData.isOneWay === false) {
+                    this.service.filterFlightsFromDestination(filterData, function (list) {
                         self.view.buildFlightsFromDestination(list, filterData);
                     });
 
@@ -53,11 +51,11 @@ define([], function () {
 
             },
 
-            refineSearch: function(priceFrom, priceTo) {
+            refineSearch: function (priceFrom, priceTo) {
                 this.view.refineSearchByPrice(priceFrom, priceTo);
             },
 
-            clearList: function() {
+            clearList: function () {
                 this.view.destroyList();
             }
 

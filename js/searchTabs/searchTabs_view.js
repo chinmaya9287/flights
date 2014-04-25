@@ -3,15 +3,18 @@
  *
  */
 define([
-    'controls/select2Dropdown',
-    'text!./searchTabs.html'
-], function (select2Dropdown, template) {
+    'jquery',
+    'controls/Select2Dropdown',
+    'text!./SearchTabs.html'
+], function ($, Select2Dropdown, template) {
+
+    'use strict';
 
     /**
      * searchTabs_view
      *
      */
-    return function() {
+    return function () {
         var view = {
             html: template,
 
@@ -23,9 +26,7 @@ define([
 
             passengersControl: null,
 
-            init: function() {
-                var self = this;
-
+            init: function () {
                 this.element = $(this.html);
 
 
@@ -34,7 +35,7 @@ define([
 
 
                 //create origin dropdown and destination dropdown using select2 dropdown
-                this.flightOriginDropdown = new select2Dropdown({
+                this.flightOriginDropdown = new Select2Dropdown({
                     id: "origin-dropdown",
                     className: "origin-selection",
                     itemValue: "id",
@@ -42,7 +43,7 @@ define([
                     parentElement: this.element.find('.flight-origin')
                 });
 
-                this.flightDestinationDropdown = new select2Dropdown({
+                this.flightDestinationDropdown = new Select2Dropdown({
                     id: "destination-dropdown",
                     className: "destination-selection",
                     itemValue: "id",
@@ -69,12 +70,12 @@ define([
 
             },
 
-            bindUIEvents: function(searchSelected) {
+            bindUIEvents: function (searchSelected) {
                 var data = {}, self = this,
                     departureDate, returnDate, passengers;
 
                 //bind UI events
-                $(this.element).find(".btn-search").click(function() {
+                $(this.element).find(".btn-search").click(function () {
 
                     departureDate = self.departureDateControl.val();
                     returnDate = self.returnDateControl.val();
@@ -86,36 +87,36 @@ define([
                         passengers: passengers
                     };
 
-                    if(searchSelected) {
+                    if (searchSelected) {
                         searchSelected(data);
                     }
 
                 });
             },
 
-            promtAlert: function(message) {
+            promtAlert: function (message) {
                 alert(message);
             },
 
-            disableReturnDatePicker: function(isDisable) {
-                var returnControl =  $(this.element).find('#datepicker-return');
+            disableReturnDatePicker: function (isDisable) {
+                var returnControl = $(this.element).find('#datepicker-return');
 
-                if(isDisable) {
-                   returnControl.attr('disabled','disabled');
+                if (isDisable) {
+                    returnControl.attr('disabled', 'disabled');
                 } else {
-                   returnControl.removeAttr('disabled');
+                    returnControl.removeAttr('disabled');
                 }
             },
 
-            buildOriginDropdowns: function(originList, selectOrigin) {
+            buildOriginDropdowns: function (originList, selectOrigin) {
                 this.flightOriginDropdown.buildOptions(originList, selectOrigin);
             },
 
-            buildDestinationDropdown: function(destinationList, selectDestination) {
+            buildDestinationDropdown: function (destinationList, selectDestination) {
                 this.flightDestinationDropdown.buildOptions(destinationList, selectDestination);
             },
 
-            displayPriceRange: function(selectPriceRange) {
+            displayPriceRange: function (selectPriceRange) {
                 var self = this;
 
 
@@ -123,16 +124,17 @@ define([
                     range: true,
                     min: 100,
                     max: 300,
-                    slide: function( event, ui ) {
+                    slide: function (event, ui) {
+                        event.stopPropagation();
                         $(self.element).filter('.selected-price').text('$' + ui.value);
                         selectPriceRange(ui.values[0], ui.values[1]);
                     }
                 });
             },
 
-            resetPrice: function() {
+            resetPrice: function () {
                 $(this.element).filter('#price-range').slider("option", "values", [100, 100]);
-                $(self.element).filter('.selected-price').text('$' + 100);
+                $(this.element).filter('.selected-price').text('$' + 100);
             }
         };
 

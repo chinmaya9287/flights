@@ -1,4 +1,4 @@
-define(['chai', 'chai-jquery', 'searchTabs/searchTabs_controller'], function (chai, plugin, searchTabs_controller) {
+define(['chai', 'chai-jquery', 'searchTabs/SearchTabs_controller'], function (chai, plugin, SearchTabs_controller) {
 
     var expect = chai.expect;
     chai.use(plugin);
@@ -16,7 +16,7 @@ define(['chai', 'chai-jquery', 'searchTabs/searchTabs_controller'], function (ch
 
         it('should initialise correctly when passed a view and a service', function () {
             function createSearchTabsController() {
-                var searchTabsControllerInstance = new searchTabs_controller({
+                var searchTabsControllerInstance = new SearchTabs_controller({
                     view: {},
                     service: {
                         getFlightRoutes: function () {}
@@ -31,7 +31,7 @@ define(['chai', 'chai-jquery', 'searchTabs/searchTabs_controller'], function (ch
         });
 
         it('should set callbacks correctly', function () {
-            var searchTabsControllerInstance = new searchTabs_controller({
+            var searchTabsControllerInstance = new SearchTabs_controller({
                     view: {},
                     service: {
                         getFlightRoutes: function () {}
@@ -59,7 +59,7 @@ define(['chai', 'chai-jquery', 'searchTabs/searchTabs_controller'], function (ch
                     originList: [],
                     getFlightRoutes: function () {}
                 },
-                searchTabsControllerInstance = new searchTabs_controller({
+                searchTabsControllerInstance = new SearchTabs_controller({
                     view: view,
                     service: service,
                     options: {
@@ -77,7 +77,7 @@ define(['chai', 'chai-jquery', 'searchTabs/searchTabs_controller'], function (ch
         });
 
         it('should update one way flag', function () {
-            var searchTabsControllerInstance = new searchTabs_controller({
+            var searchTabsControllerInstance = new SearchTabs_controller({
                     view: {
                         resetPrice: function() {}
                     },
@@ -106,7 +106,7 @@ define(['chai', 'chai-jquery', 'searchTabs/searchTabs_controller'], function (ch
                     getFlightRoutes: function () {},
                     getAvailableDestinations: function () {}
                 },
-                searchTabsControllerInstance = new searchTabs_controller({
+                searchTabsControllerInstance = new SearchTabs_controller({
                     view: view,
                     service: service,
                     options: {
@@ -135,7 +135,7 @@ define(['chai', 'chai-jquery', 'searchTabs/searchTabs_controller'], function (ch
                     getFlightRoutes: function () {},
                     getAvailableDestinations: function () {}
                 },
-                searchTabsControllerInstance = new searchTabs_controller({
+                searchTabsControllerInstance = new SearchTabs_controller({
                     view: view,
                     service: service,
                     options: {
