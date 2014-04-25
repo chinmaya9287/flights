@@ -3,7 +3,7 @@ define(['jquery', 'select2'], function ($) {
     'use strict';
 
     /**
-     * @class select2Dropdown
+     * @class Select2Dropdown
      * @param {Object} options
      * @param {String} options.id
      * @param {HTMLElement} options.parentElement
@@ -11,7 +11,7 @@ define(['jquery', 'select2'], function ($) {
      * @param {String} [options.itemValue="id"]
      * @param {String} [options.itemDisplayName="name"]
      */
-    var select2Dropdown = function (options) {
+    var Select2Dropdown = function (options) {
 
         var control = {
 
@@ -107,5 +107,5 @@ define(['jquery', 'select2'], function ($) {
         return control;
     };
 
-    return select2Dropdown;
+    return Select2Dropdown;
 });

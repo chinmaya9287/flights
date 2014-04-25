@@ -1,4 +1,4 @@
-define(['chai', 'chai-jquery', 'searchTabs/searchTabs_view'], function (chai, plugin, searchTabs_view) {
+define(['chai', 'chai-jquery', 'searchTabs/SearchTabs_view'], function (chai, plugin, SearchTabs_view) {
 
     var expect = chai.expect;
     chai.use(plugin);
@@ -16,7 +16,7 @@ define(['chai', 'chai-jquery', 'searchTabs/searchTabs_view'], function (chai, pl
 
         it('should initialise correctly', function () {
             function createSearchTabsView() {
-                var searchTabsViewInstance = new searchTabs_view();
+                var searchTabsViewInstance = new SearchTabs_view();
             }
 
             expect(createSearchTabsView).to.not.throw(Error);

@@ -1,7 +1,7 @@
 define([
     'jquery',
-    'text!./searchResults.html',
-    'text!./searchResultItem.html',
+    'text!./SearchResults.html',
+    'text!./SearchResultItem.html',
     'moment',
     'underscore'
 ], function ($, template, itemTemplate, moment, _) {

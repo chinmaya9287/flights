@@ -4,8 +4,8 @@
  */
 define([
     'jquery',
-    'controls/select2Dropdown',
-    'text!./searchTabs.html'
+    'controls/Select2Dropdown',
+    'text!./SearchTabs.html'
 ], function ($, Select2Dropdown, template) {
 
     'use strict';

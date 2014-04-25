@@ -1,13 +1,13 @@
 require([
     'jquery',
-    'searchTabs/searchTabs_controller',
-    'searchTabs/searchTabs_service',
-    'searchTabs/searchTabs_view',
-    'searchResults/searchResults_controller',
-    'searchResults/searchResults_service',
-    'searchResults/searchResults_view',
-    'flightTabs/flightTabs_controller',
-    'flightTabs/flightTabs_view'
+    'searchTabs/SearchTabs_controller',
+    'searchTabs/SearchTabs_service',
+    'searchTabs/SearchTabs_view',
+    'searchResults/SearchResults_controller',
+    'searchResults/SearchResults_service',
+    'searchResults/SearchResults_view',
+    'flightTabs/FlightTabs_controller',
+    'flightTabs/FlightTabs_view'
 ], function ($, SearchTabs_controller, SearchTabs_service, SearchTabs_view, SearchResults_controller, SearchResults_service, SearchResults_view, FlightTabs_controller, FlightTabs_view) {
 
     'use strict';

@@ -1,4 +1,4 @@
-define(['chai', 'chai-jquery', 'searchResults/searchResults_service'], function (chai, plugin, searchResults_service) {
+define(['chai', 'chai-jquery', 'searchResults/SearchResults_service'], function (chai, plugin, SearchResults_service) {
 
     var expect = chai.expect;
     chai.use(plugin);
@@ -16,7 +16,7 @@ define(['chai', 'chai-jquery', 'searchResults/searchResults_service'], function 
 
         it('should initialise correctly', function () {
             function createSearchResultsService() {
-                var searchResultsServiceInstance = new searchResults_service();
+                var searchResultsServiceInstance = new SearchResults_service();
             }
 
             expect(createSearchResultsService).to.not.throw(Error);

@@ -4,7 +4,7 @@
  */
 define([
     'jquery',
-    'text!./flightTabs.html',
+    'text!./FlightTabs.html',
     'jquery-ui'
 ], function ($, template) {
 
