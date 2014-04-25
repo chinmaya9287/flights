@@ -14,14 +14,6 @@ module.exports = function(grunt) {
             compile: {
                 options: {
                     paths: ['js/**/*.styl']
-//                    urlfunc: 'embedurl', // use embedurl('test.png') in our code to trigger Data URI embedding
-//                    use: [
-//                        require('fluidity') // use stylus plugin at compile time
-//                    ],
-//                    import: [      //  @import 'foo', 'bar/moo', etc. into every .styl file
-//                        'foo',       //  that is compiled. These might be findable based on values you gave
-//                        'bar/moo'    //  to `paths`, or a plugin you added under `use`
-//                    ]
                 },
                 files: {
                     'build/main.css': ['js/**/*.styl']
@@ -75,7 +67,6 @@ module.exports = function(grunt) {
                     reporters: ['progress'],
                     port: 9999,
                     colors: true,
-//                    logLevel: config.LOG_ERROR,
                     autoWatch: false,
                     browsers: ['PhantomJS'],
                     captureTimeout: 6000,
@@ -100,5 +91,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('default', ['karma', 'stylus']);
+    grunt.registerTask('default', ['karma', 'stylus', 'requirejs']);
 };
