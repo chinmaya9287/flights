@@ -21,6 +21,7 @@ define(['chai', 'chai-jquery', 'searchResults/SearchResults_controller'], functi
                     service: {
                         getFlights: function () {}
                     }
+
                 });
             }
 

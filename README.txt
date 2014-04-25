@@ -38,8 +38,8 @@ Installs packages for backend / unit testing etc.
 Runs the unit testing + compiling procedure.
 
 5) node app.js
-Hosts the website on the localhost:8080(compiled js)
-The development environment can be accessed at localhost:8080/index-dev.html
+Hosts the website on the localhost:9999(compiled js)
+The development environment can be accessed at localhost:9999/index-dev.html
 
 Library & Tools:
 jquey, jquery-ui, moment, require.js, select2, underscore,  nodejs, expressjs, bower, grunt, stylus, jslint,

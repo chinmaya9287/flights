@@ -1,17 +1,17 @@
 /**
- * searchTabs_view
+ * searchForm_view
  *
  */
 define([
     'jquery',
     '../controls/Select2Dropdown',
-    'text!./SearchTabs.html'
+    'text!./SearchForm.html'
 ], function ($, Select2Dropdown, template) {
 
     'use strict';
 
     /**
-     * searchTabs_view
+     * searchForm_view
      *
      */
     return function () {
@@ -130,11 +130,6 @@ define([
                         selectPriceRange(ui.values[0], ui.values[1]);
                     }
                 });
-            },
-
-            resetPrice: function () {
-                $(this.element).filter('#price-range').slider("option", "values", [100, 100]);
-                $(this.element).filter('.selected-price').text('$' + 100);
             }
         };
 

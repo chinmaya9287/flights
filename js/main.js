@@ -1,19 +1,22 @@
 require([
     'jquery',
-    'searchTabs/SearchTabs_controller',
-    'searchTabs/SearchTabs_service',
-    'searchTabs/SearchTabs_view',
+    'searchForm/SearchForm_controller',
+    'searchForm/SearchForm_service',
+    'searchForm/SearchForm_view',
     'searchResults/SearchResults_controller',
     'searchResults/SearchResults_service',
     'searchResults/SearchResults_view',
     'flightTabs/FlightTabs_controller',
     'flightTabs/FlightTabs_view'
-], function ($, SearchTabs_controller, SearchTabs_service, SearchTabs_view, SearchResults_controller, SearchResults_service, SearchResults_view, FlightTabs_controller, FlightTabs_view) {
+], function ($, SearchForm_controller, SearchForm_service, SearchForm_view,
+             SearchResults_controller, SearchResults_service, SearchResults_view,
+             FlightTabs_controller, FlightTabs_view) {
 
     'use strict';
 
     $(document).ready(function () {
-        var flightTabs, searchTabs, searchResults;
+        var flightTabs, searchForm, searchResults,
+            maxPrice = 300, minPrice = 100;
 
 
         //initial the flight tab
@@ -24,15 +27,17 @@ require([
                     clickTabCallback: function (isOneWay) {
                         if (isOneWay) {
                             //disable the return date picker
-                            searchTabs.view.disableReturnDatePicker(true);
-                            searchTabs.updateIsOneWay(true);
+                            searchForm.view.disableReturnDatePicker(true);
+                            searchForm.updateIsOneWay(true);
+
                             //clear the results list
-                            searchResults.clearList();
+                            searchForm.clearList();
 
                         } else {
                             //disable the return date picker
-                            searchTabs.view.disableReturnDatePicker(false);
-                            searchTabs.updateIsOneWay(false);
+                            searchForm.view.disableReturnDatePicker(false);
+                            searchForm.updateIsOneWay(false);
+
                             //clear the results list
                             searchResults.clearList();
                         }
@@ -51,19 +56,28 @@ require([
         //initial the search results
         searchResults = new SearchResults_controller({
             service: new SearchResults_service(),
-            view: new SearchResults_view()
+            view: new SearchResults_view(),
+            options: {
+                maxPrice: maxPrice,
+                minPrice: minPrice
+            }
         });
 
 
         //initial the search tab
-        searchTabs = new SearchTabs_controller({
-            service: new SearchTabs_service(),
-            view: new SearchTabs_view(),
+        searchForm = new SearchForm_controller({
+            service: new SearchForm_service(),
+            view: new SearchForm_view(),
             options: {
                 isOneWay: flightTabs.isOneWay,
+                maxPrice: maxPrice,
+                minPrice: minPrice,
                 callbacks: {
                     searchSubmitCallback: function (data) {
-                        searchResults.searchFlights(data);
+                        searchResults.searchFlights(data, searchForm.priceFrom, searchForm.priceTo);
+                    },
+                    refinePriceCallback: function (priceFrom, priceTo) {
+                        searchResults.refineSearch(priceFrom, priceTo);
                     }
                 }
             }
@@ -72,15 +86,9 @@ require([
 
         //attach sub views to the tab control
         flightTabs.view.attachSections({
-            searchForm: searchTabs.view.element,
+            searchForm: searchForm.view.element,
             searchResults: searchResults.view.element
         });
-
-        //bind the events for price slider
-        searchTabs.view.displayPriceRange(function (priceFrom, priceTo) {
-            searchResults.refineSearch(priceFrom, priceTo);
-        });
-
     });
 });
 

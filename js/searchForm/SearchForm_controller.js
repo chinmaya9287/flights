@@ -4,7 +4,7 @@ define([], function () {
 
     /**
      * this controller initials the service and the view
-     * @class searchTabs_controller
+     * @class searchForm_controller
      * @param {Object} options
      * @param {Object} options.service
      * @param {Object} options.view
@@ -92,7 +92,6 @@ define([], function () {
 
             updateIsOneWay: function (flag) {
                 this.isOneWay = flag;
-                this.view.resetPrice();
             },
 
             searchSubmit: function (data) {

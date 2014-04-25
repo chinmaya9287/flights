@@ -1,4 +1,4 @@
-define(['chai', 'chai-jquery', 'searchTabs/SearchTabs_controller'], function (chai, plugin, SearchTabs_controller) {
+define(['chai', 'chai-jquery', 'searchForm/SearchForm_controller'], function (chai, plugin, SearchForm_controller) {
 
     var expect = chai.expect;
     chai.use(plugin);
@@ -15,8 +15,8 @@ define(['chai', 'chai-jquery', 'searchTabs/SearchTabs_controller'], function (ch
         });
 
         it('should initialise correctly when passed a view and a service', function () {
-            function createSearchTabsController() {
-                var searchTabsControllerInstance = new SearchTabs_controller({
+            function createSearchFormController() {
+                var searchFormControllerInstance = new SearchForm_controller({
                     view: {
                         displayPriceRange: function () {}
                     },
@@ -29,11 +29,11 @@ define(['chai', 'chai-jquery', 'searchTabs/SearchTabs_controller'], function (ch
                 });
             }
 
-            expect(createSearchTabsController).to.not.throw(Error);
+            expect(createSearchFormController).to.not.throw(Error);
         });
 
         it('should set callbacks correctly', function () {
-            var searchTabsControllerInstance = new SearchTabs_controller({
+            var searchFormControllerInstance = new SearchForm_controller({
                     view: {
                         displayPriceRange: function () {}
                     },
@@ -48,9 +48,9 @@ define(['chai', 'chai-jquery', 'searchTabs/SearchTabs_controller'], function (ch
                     searchSubmitCallback: function() {}
                 };
 
-            searchTabsControllerInstance.setCallbacks(callbacks);
+            searchFormControllerInstance.setCallbacks(callbacks);
 
-            expect(searchTabsControllerInstance.searchSubmitCallback).to.equal(callbacks.searchSubmitCallback);
+            expect(searchFormControllerInstance.searchSubmitCallback).to.equal(callbacks.searchSubmitCallback);
         });
 
         it('should build dropdowns on the view correctly', function () {
@@ -64,7 +64,7 @@ define(['chai', 'chai-jquery', 'searchTabs/SearchTabs_controller'], function (ch
                     originList: [],
                     getFlightRoutes: function () {}
                 },
-                searchTabsControllerInstance = new SearchTabs_controller({
+                searchFormControllerInstance = new SearchForm_controller({
                     view: view,
                     service: service,
                     options: {
@@ -73,16 +73,16 @@ define(['chai', 'chai-jquery', 'searchTabs/SearchTabs_controller'], function (ch
                 }),
                 getAvailableDestinationsStub;
 
-            getAvailableDestinationsStub = sandbox.stub(searchTabsControllerInstance, 'getAvailableDestinations');
+            getAvailableDestinationsStub = sandbox.stub(searchFormControllerInstance, 'getAvailableDestinations');
 
-            searchTabsControllerInstance.buildDropdowns();
+            searchFormControllerInstance.buildDropdowns();
 
             expect(service.selectedOriginID).equals(1);
             assert(getAvailableDestinationsStub.calledWith(1));
         });
 
         it('should update one way flag', function () {
-            var searchTabsControllerInstance = new SearchTabs_controller({
+            var searchFormControllerInstance = new SearchForm_controller({
                     view: {
                         resetPrice: function() {},
                         displayPriceRange: function () {}
@@ -95,9 +95,9 @@ define(['chai', 'chai-jquery', 'searchTabs/SearchTabs_controller'], function (ch
                     }
                 });
 
-            searchTabsControllerInstance.updateIsOneWay(true);
+            searchFormControllerInstance.updateIsOneWay(true);
 
-            expect(searchTabsControllerInstance.isOneWay).to.equal(true);
+            expect(searchFormControllerInstance.isOneWay).to.equal(true);
         });
 
         it('should retrieve available destinations', function () {
@@ -113,7 +113,7 @@ define(['chai', 'chai-jquery', 'searchTabs/SearchTabs_controller'], function (ch
                     getFlightRoutes: function () {},
                     getAvailableDestinations: function () {}
                 },
-                searchTabsControllerInstance = new SearchTabs_controller({
+                searchFormControllerInstance = new SearchForm_controller({
                     view: view,
                     service: service,
                     options: {
@@ -121,7 +121,7 @@ define(['chai', 'chai-jquery', 'searchTabs/SearchTabs_controller'], function (ch
                     }
                 });
 
-            searchTabsControllerInstance.getAvailableDestinations(1);
+            searchFormControllerInstance.getAvailableDestinations(1);
 
             expect(service.getAvailableDestinations).to.be.called;
             expect(view.buildDestinationDropdown).to.be.called;
@@ -143,7 +143,7 @@ define(['chai', 'chai-jquery', 'searchTabs/SearchTabs_controller'], function (ch
                     getFlightRoutes: function () {},
                     getAvailableDestinations: function () {}
                 },
-                searchTabsControllerInstance = new SearchTabs_controller({
+                searchFormControllerInstance = new SearchForm_controller({
                     view: view,
                     service: service,
                     options: {
@@ -156,13 +156,13 @@ define(['chai', 'chai-jquery', 'searchTabs/SearchTabs_controller'], function (ch
                 };
 
 
-            searchTabsControllerInstance.isOneWay = true;
-            searchTabsControllerInstance.searchSubmitCallback = function () {};
-            searchTabsControllerInstance.refinePriceCallback = function() {};
+            searchFormControllerInstance.isOneWay = true;
+            searchFormControllerInstance.searchSubmitCallback = function () {};
+            searchFormControllerInstance.refinePriceCallback = function() {};
 
-            searchTabsControllerInstance.searchSubmit(data, 100, 300);
+            searchFormControllerInstance.searchSubmit(data, 100, 300);
 
-            expect(searchTabsControllerInstance.searchSubmitCallback).to.be.called;
+            expect(searchFormControllerInstance.searchSubmitCallback).to.be.called;
         });
     });
 });
