@@ -1,14 +1,18 @@
-
 define([
+    'jquery',
     'text!./searchResults.html',
-    'text!./searchResultItem.html'
-], function (template, itemTemplate) {
+    'text!./searchResultItem.html',
+    'moment',
+    'underscore'
+], function ($, template, itemTemplate, moment, _) {
+
+    'use strict';
 
     /**
      * searchResults_view
      *
      */
-    return function() {
+    return function () {
         var view = {
             html: template,
 
@@ -17,22 +21,19 @@ define([
             list: null,
 
 
-            init: function() {
-                var self = this;
-
+            init: function () {
                 this.element = $(this.html);
                 this.list = [];
-
             },
 
-            destroyList: function() {
+            destroyList: function () {
                 this.list = [];
 
                 $(this.element).find(".flights-from-origin-list").remove();
                 $(this.element).find(".flights-from-destination-list").remove();
             },
 
-            buildItem: function(item, filterData) {
+            buildItem: function (item, filterData) {
                 var itemElement, itemTemp,
                     title = "From " + item.originCityName + " to " + item.destinationCityName;
 
@@ -43,23 +44,23 @@ define([
                     flightNumber: item.flightNumber,
                     departureDate: filterData.departureDate,
                     arriveDate: filterData.departureDate,
-                    departureTime: moment(item.departureDateTime).format( "HH:mm"),
-                    arriveTime: moment(item.arriveDateTime).format( "HH:mm"),
+                    departureTime: moment(item.departureDateTime).format("HH:mm"),
+                    arriveTime: moment(item.arriveDateTime).format("HH:mm"),
                     flightPrice: item.price
                 }));
 
-                itemElement.addClass('flight-id-'+ item.id);
+                itemElement.addClass('flight-id-' + item.id);
 
                 return itemElement;
             },
 
-            buildList: function(list, className, filterData) {
-                var i, item, listContainer = $('<div class="'+ className +'"></div>'),
+            buildList: function (list, className, filterData) {
+                var i, item, listContainer = $('<div class="' + className + '"></div>'),
                     ulElement = $('<ul></ul>');
 
                 listContainer.append(ulElement);
 
-                for(i=0;i<list.length;i++) {
+                for (i = 0; i < list.length; i++) {
                     item = this.buildItem(list[i], filterData);
 
                     //add the item Elment to the list
@@ -71,20 +72,20 @@ define([
                 return listContainer;
             },
 
-            buildFlightsFromOrigin: function(list, filterData) {
+            buildFlightsFromOrigin: function (list, filterData) {
                 var listContainer = this.buildList(list, "flights-from-origin-list", filterData);
 
                 $(this.element).filter(".flights-from-origin").append(listContainer);
             },
 
-            buildFlightsFromDestination: function(list, filterData) {
+            buildFlightsFromDestination: function (list, filterData) {
                 var listContainer = this.buildList(list, "flights-from-destination-list", filterData);
                 $(this.element).filter(".flights-from-destination").append(listContainer);
             },
 
-            refineSearchByPrice: function(priceFrom, priceTo) {
-                _.each(this.list, function(item) {
-                    if(item.price >= priceFrom && item.price <= priceTo) {
+            refineSearchByPrice: function (priceFrom, priceTo) {
+                _.each(this.list, function (item) {
+                    if (item.price >= priceFrom && item.price <= priceTo) {
                         item.element.fadeOut();
                     } else {
                         item.element.fadeIn();

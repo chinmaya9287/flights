@@ -1,6 +1,8 @@
-define([], function () {
+define(['jquery', 'underscore'], function ($, _) {
 
-    return function(options) {
+    'use strict';
+
+    return function () {
         var service = {
 
             flightList: null,
@@ -8,51 +10,46 @@ define([], function () {
             filteredFlightList: null,
 
             //initialise the service and view
-            init:  function() {
+            init: function () {
 
                 this.flightList = [];
                 this.filteredFlightList = [];
             },
 
-            getFlights: function(successCallback) {
+            getFlights: function (successCallback) {
                 var self = this;
 
                 $.ajax({
                     url: 'json/flights.json',
                     dataType: 'json'
-                })
-                    .done(function(data) {
+                }).done(function (data) {
 
-                        self.flightList = data;
-                        if(successCallback) {
-                            successCallback(data);
-                        }
-
-                    }).fail(function() {
-
-                    });
+                    self.flightList = data;
+                    if (successCallback) {
+                        successCallback(data);
+                    }
+                });
             },
 
-            filterFlights: function(data) {
-                return _.filter(this.flightList, function(item) {
-
+            filterFlights: function (data) {
+                return _.filter(this.flightList, function (item) {
                     //TODO: the filter should also filter by the departure and arrive date
                     //coz we dont have a real web service that could generate the filgits with different date so we ignore the dates for now
-                    if(item.originCityID === data.selectedOriginID && item.destinationCityID === data.selectedDestinationID) {
+                    if (item.originCityID === data.selectedOriginID && item.destinationCityID === data.selectedDestinationID) {
                         return true;
                     }
 
                     return false;
-                })
+                });
             },
 
             /**
              * filter flights from origin
              * @param filterData
              */
-            filterFlightsFromOrigin: function(filterData, callback) {
+            filterFlightsFromOrigin: function (filterData, callback) {
                 this.filteredFlightList = this.filterFlights(filterData);
-                if(callback) {
+                if (callback) {
                     callback(this.filteredFlightList);
                 }
             },
@@ -61,7 +58,7 @@ define([], function () {
              * filter flights from destination
              * @param filterData
              */
-            filterFlightsFromDestination: function(filterData, callback) {
+            filterFlightsFromDestination: function (filterData, callback) {
                 var data = {
                     selectedOriginID: filterData.selectedDestinationID,
                     selectedDestinationID: filterData.selectedOriginID,
@@ -71,7 +68,7 @@ define([], function () {
                 };
 
                 this.filteredFlightList = this.filterFlights(data);
-                if(callback) {
+                if (callback) {
                     callback(this.filteredFlightList);
                 }
             }

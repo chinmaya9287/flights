@@ -6,7 +6,17 @@ module.exports = function(grunt) {
                 options: {
                     baseUrl: "js",
                     name: "main",
-                    out: "build/main.js"
+                    out: "build/main.js",
+                    paths: {
+                        moment: '../bower_components/moment/min/moment.min',
+                        underscore: '../bower_components/underscore/underscore',
+                        jquery: '../bower_components/jquery/jquery.min',
+                        select2: '../bower_components/select2/select2',
+                        'jquery-ui': '../bower_components/jquery-ui/ui/jquery-ui'
+                    },
+                    shim: {
+                        select2: ['jquery']
+                    }
                 }
             }
         },
@@ -25,11 +35,19 @@ module.exports = function(grunt) {
                 src: [
                     'js/**/*.js'
                 ],
+                exclude: [
+                    'js/text.js'
+                ],
                 directives: {
                     browser: true,
                     predef: [
-                        'jQuery'
-                    ]
+                        'alert',
+                        'define',
+                        'require'
+                    ],
+                    nomen: true,
+                    plusplus: true,
+                    todo: true
                 },
                 options: {
                     junit: 'out/client-junit.xml'
@@ -54,6 +72,7 @@ module.exports = function(grunt) {
                         'bower_components/jquery-ui/ui/jquery-ui.js',
                         'bower_components/select2/select2.js',
                         'bower_components/underscore/underscore.js',
+                        'bower_components/moment/min/moment.min.js',
 
                         {pattern: 'js/**/*.html', included: false},
                         {pattern: 'js/**/*.js', included: false},
@@ -91,5 +110,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-jslint');
     grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('default', ['karma', 'stylus', 'requirejs']);
+    grunt.registerTask('default', ['jslint', 'karma', 'stylus', 'requirejs']);
 };

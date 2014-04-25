@@ -1,4 +1,7 @@
-define([], function () {
+define(['jquery', 'select2'], function ($) {
+
+    'use strict';
+
     /**
      * @class select2Dropdown
      * @param {Object} options
@@ -8,7 +11,7 @@ define([], function () {
      * @param {String} [options.itemValue="id"]
      * @param {String} [options.itemDisplayName="name"]
      */
-    var select2Dropdown = function(options) {
+    var select2Dropdown = function (options) {
 
         var control = {
 
@@ -24,7 +27,7 @@ define([], function () {
 
             selectCallback: null,
 
-            init: function() {
+            init: function () {
                 this.assignOptions(options);
 
                 this.element = document.createElement('select');
@@ -35,12 +38,12 @@ define([], function () {
                 //select2 must be attached to the dom before using it
                 this.parentElement.append(this.element);
 
-                if(options.className) {
+                if (options.className) {
                     $(this.element).addClass(options.className);
                 }
             },
 
-            buildOptions: function(dataList, selectCallback) {
+            buildOptions: function (dataList, selectCallback) {
                 var self = this;
 
                 this.list = dataList;
@@ -52,20 +55,19 @@ define([], function () {
                 });
 
                 //bind the selection change event
-                $(this.element).change(
-                    function() {
-                        var selectedValue;
+                $(this.element).change(function () {
+                    var selectedValue;
 
-                        if(selectCallback) {
-                            selectedValue = $('#' + self.id).select2("val");
-                            selectCallback(selectedValue);
+                    if (selectCallback) {
+                        selectedValue = $('#' + self.id).select2("val");
+                        selectCallback(selectedValue);
                     }
                 });
             },
 
-            assignOptions: function(options) {
+            assignOptions: function (options) {
 
-                if(options.id && options.parentElement) {
+                if (options.id && options.parentElement) {
                     this.itemValue = options.itemValue || "id";
                     this.itemDisplayName = options.itemDisplayName || "name";
                     this.parentElement = options.parentElement;
@@ -75,23 +77,25 @@ define([], function () {
                 }
             },
 
-            buildOptionGroup: function(groupList) {
-                var optionList, html = "";
+            buildOptionGroup: function (groupList) {
+                var optionList, html = "", name;
 
                 for (name in groupList) {
-                    optionList = groupList[name];
-                    html += '<optgroup label="'+ name +'">' + this.buildItemList(optionList) + "</optgroup>";
+                    if (groupList.hasOwnProperty(name)) {
+                        optionList = groupList[name];
+                        html += '<optgroup label="' + name + '">' + this.buildItemList(optionList) + "</optgroup>";
+                    }
                 }
 
                 return html;
             },
 
-            buildItemList: function(optionList) {
+            buildItemList: function (optionList) {
                 var i, html = "", item;
 
-                for(i=0; i < optionList.length; i++) {
+                for (i = 0; i < optionList.length; i++) {
                     item = optionList[i];
-                    html += '<option value="'+ item[this.itemValue] +'">'+ item[this.itemDisplayName] +'</option>';
+                    html += '<option value="' + item[this.itemValue] + '">' + item[this.itemDisplayName] + '</option>';
                 }
 
                 return html;
