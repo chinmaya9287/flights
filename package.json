@@ -3,6 +3,9 @@
     "description": "This projects provides a flight search engine",
     "version": "1.0.0",
     "main": "js/main.js",
+    "script": {
+        "start": "node app.js"
+    },
     "dependencies": {
         "chai-jquery": "*",
         "grunt": "*",
@@ -22,6 +25,7 @@
         "karma-requirejs": "*",
         "karma-script-launcher": "*",
         "karma-sinon": "*",
-        "mocha": "*"
+        "mocha": "*",
+        "express": "*"
     }
 }
