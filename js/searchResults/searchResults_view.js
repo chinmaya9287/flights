@@ -34,13 +34,11 @@ define([
             },
 
             buildItem: function (item, filterData) {
-                var itemElement, itemTemp,
-                    title = "From " + item.originCityName + " to " + item.destinationCityName;
+                var itemElement, itemTemp;
 
                 itemTemp = _.template(itemTemplate);
 
                 itemElement = $(itemTemp({
-                    title: title,
                     flightNumber: item.flightNumber,
                     departureDate: filterData.departureDate,
                     arriveDate: filterData.departureDate,
@@ -55,10 +53,16 @@ define([
             },
 
             buildList: function (list, className, filterData) {
-                var i, item, listContainer = $('<div class="' + className + '"></div>'),
+                var i, item, title, listContainer = $('<div class="' + className + '"></div>'),
                     ulElement = $('<ul></ul>');
 
                 listContainer.append(ulElement);
+
+                //attach the list title
+                if (list.length > 0) {
+                    title = "<h2>From " + list[0].originCityName + " to " + list[0].destinationCityName + "</h2>";
+                    ulElement.html(title);
+                }
 
                 for (i = 0; i < list.length; i++) {
                     item = this.buildItem(list[i], filterData);

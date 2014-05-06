@@ -19,8 +19,12 @@ define([], function () {
             init: function () {
                 var self = this;
 
-                this.view = options.view;
-                this.setCallbacks(options.options.callbacks);
+                if (options) {
+                    this.view = options.view;
+                    if (options.options) {
+                        this.setCallbacks(options.options.callbacks);
+                    }
+                }
 
                 //default tab
                 this.isOneWay = true;

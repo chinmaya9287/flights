@@ -1,9 +1,9 @@
-define(['chai', 'chai-jquery', 'searchTabs/SearchTabs_view'], function (chai, plugin, SearchTabs_view) {
+define(['chai', 'chai-jquery', 'flightTabs/FlightTabs_view'], function (chai, plugin, FlightTabs_view) {
 
     var expect = chai.expect;
     chai.use(plugin);
 
-    describe('Search Tabs View', function() {
+    describe('Flight Tabs View', function() {
         var sandbox;
 
         beforeEach(function() {
@@ -15,11 +15,11 @@ define(['chai', 'chai-jquery', 'searchTabs/SearchTabs_view'], function (chai, pl
         });
 
         it('should initialise correctly', function () {
-            function createSearchTabsView() {
-                var searchTabsViewInstance = new SearchTabs_view();
+            function createFlightTabsview() {
+                var flightTabsviewInstance = new FlightTabs_view();
             }
 
-            expect(createSearchTabsView).to.not.throw(Error);
+            expect(createFlightTabsview).to.not.throw(Error);
         });
 
     });

@@ -19,7 +19,9 @@ define([], function () {
 
             filterData: null,
 
-            //initialise the service and view
+            /**
+             * initialise the service and view
+             */
             init: function () {
                 this.service = options.service;
                 this.view = options.view;
@@ -31,7 +33,13 @@ define([], function () {
                 this.service.getFlights();
             },
 
-            //perform search action and generate the
+            /**
+             * perform search action and generate the flight from origin and flight from destination list
+             * it also performs a filter based on the provied price ragne
+             * @param filterData
+             * @param priceFrom
+             * @param priceTo
+             */
             searchFlights: function (filterData, priceFrom, priceTo) {
                 var self = this;
 
@@ -42,33 +50,58 @@ define([], function () {
 
                 //render the flight list from origin
                 this.service.filterFlightsFromOrigin(filterData, function (list) {
-                    self.view.buildFlightsFromOrigin(list, filterData);
-
-                    //check whether the list need to be refiend by the price range
-                    if (priceFrom > self.minPrice || priceTo < self.maxPrice) {
-                        self.view.refineSearchByPrice(priceFrom, priceTo);
-                    }
-
+                    self.buildFlightsFromOrigin(list, filterData, priceFrom, priceTo);
                 });
 
                 //render the flight list from destination if it is return
                 if (filterData.isOneWay === false) {
                     this.service.filterFlightsFromDestination(filterData, function (list) {
-                        self.view.buildFlightsFromDestination(list, filterData);
-
-                        //check whether the list need to be refiend by the price range
-                        if (priceFrom > self.minPrice || priceTo < self.maxPrice) {
-                            self.view.refineSearchByPrice(priceFrom, priceTo);
-                        }
+                        self.buildFlightsFromDestination(list, filterData, priceFrom, priceTo);
                     });
                 }
 
             },
 
+            /**
+             * build the flights from origin
+             * @param list
+             * @param filterData
+             */
+            buildFlightsFromOrigin: function (list, filterData, priceFrom, priceTo) {
+                this.view.buildFlightsFromOrigin(list, filterData);
+
+                //check whether the list need to be refiend by the price range
+                if (priceFrom > this.minPrice || priceTo < this.maxPrice) {
+                    this.view.refineSearchByPrice(priceFrom, priceTo);
+                }
+            },
+
+            /**
+             * build the flights from destination
+             * @param list
+             * @param filterData
+             */
+            buildFlightsFromDestination: function (list, filterData, priceFrom, priceTo) {
+                this.view.buildFlightsFromDestination(list, filterData);
+
+                //check whether the list need to be refiend by the price range
+                if (priceFrom > this.minPrice || priceTo < this.maxPrice) {
+                    this.view.refineSearchByPrice(priceFrom, priceTo);
+                }
+            },
+
+            /**
+             * filter the current flight list based on the price range
+             * @param priceFrom
+             * @param priceTo
+             */
             refineSearch: function (priceFrom, priceTo) {
                 this.view.refineSearchByPrice(priceFrom, priceTo);
             },
 
+            /**
+             * destroy the flight list for redrawing
+             */
             clearList: function () {
                 this.view.destroyList();
             }
